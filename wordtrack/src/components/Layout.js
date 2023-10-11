@@ -12,7 +12,6 @@ const navStyles = {
     height: 60,
     width: "100vw",
     alignItems: "center",
-    //paddingLeft: 20,
   },
   title: {
     paddingLeft: 20,
