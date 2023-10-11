@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
-import firebaseApp from '../firebase';
+import { firebaseApp } from '../firebase';
 
 const Signup = () => {
   const [email, setEmail] = useState('');
