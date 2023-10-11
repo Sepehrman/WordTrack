@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { ref, push } from 'firebase/database';
+import { ref, push, se } from 'firebase/database';
 import { database } from '../firebase'; 
+import { json } from 'react-router-dom';
 
 function Dashboard() {
   const [data, setData] = useState('');
@@ -12,7 +13,8 @@ function Dashboard() {
     const userEmail = sessionStorage.getItem('userEmail');
 
     // Push data to the 'data' location in the database
-    push(dataRef, data)
+    const jsonData = {user : userEmail, word: data};
+    push(dataRef, jsonData)
       .then(() => {
         console.log(`User ${userEmail} added stuff to the database`);
         setData(''); // Clear the input field after adding data
