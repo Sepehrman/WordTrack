@@ -1,5 +1,5 @@
 // src/components/Login.js
-import React, { useState } from 'react';
+import React, { useReducer, useState } from 'react';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import {firebaseApp} from '../firebase';
 
@@ -11,6 +11,12 @@ const Login = () => {
     const auth = getAuth(firebaseApp);
     try {
       await signInWithEmailAndPassword(auth, email, password);
+
+      if (email) {
+              // Store user email in sessionStorage
+      sessionStorage.setItem('userEmail', email);
+      console.log(`User Logged in as ${email}`);
+      }
 
       // Redirect to the dashboard or user profile page
       // You can implement this as needed

@@ -9,11 +9,12 @@ function Dashboard() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    const userEmail = sessionStorage.getItem('userEmail');
 
     // Push data to the 'data' location in the database
     push(dataRef, data)
       .then(() => {
-        console.log('Data added to the database');
+        console.log(`User ${userEmail} added stuff to the database`);
         setData(''); // Clear the input field after adding data
       })
       .catch((error) => {
@@ -23,7 +24,7 @@ function Dashboard() {
 
   return (
     <div>
-      <h2>Add Data to Database</h2>
+      <h2>Save Word to database</h2>
       <form onSubmit={handleSubmit}>
         <input
           type="text"

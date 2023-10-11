@@ -4,14 +4,16 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'; // Import Route
 import Signup from './components/Signup';
 import Login from './components/Login';
 import Dashboard from './components/Dashboard';
+import Navbar from './components/Navbar';
 
 
 function App() {
   return (
     <BrowserRouter>
+      <Navbar></Navbar>
       <Routes>
         <Route path="/register" element={<Signup />} /> 
-        <Route path="/dashboard" element={<Dashboard />} /> 
+        <Route path="/" element={<Dashboard />} /> 
         <Route path="/login" element={<Login />} />
         {/* Add routes for the dashboard or user profile */}
       </Routes>
