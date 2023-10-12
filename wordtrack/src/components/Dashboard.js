@@ -1,23 +1,29 @@
 import React, { useState } from 'react';
-import { ref, push, se } from 'firebase/database';
-import { database } from '../firebase'; 
-import { json } from 'react-router-dom';
+import { ref, set } from 'firebase/database';
+import { database } from '../firebase';
 
 function Dashboard() {
+  const [word, setWord] = useState('');
   const [data, setData] = useState('');
-  const dataRef = ref(database, 'data');
+  const userEmail = sessionStorage.getItem('userEmail');
 
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const userEmail = sessionStorage.getItem('userEmail');
+  const handleAddData = () => {
+    // Ensure a custom key is provided
 
-    // Push data to the 'data' location in the database
-    const jsonData = {user : userEmail, word: data};
-    push(dataRef, jsonData)
+    // Create a reference to the database location where you want to add the data
+    const dataRef = ref(database, `data/${userEmail.replace('.', '_')}/${word}`);
+    const jsonData = {
+      'word' : word,
+      'note' : ''
+    }
+
+
+    // Set the data with the custom key
+    set(dataRef, jsonData)
       .then(() => {
-        console.log(`User ${userEmail} added stuff to the database`);
-        setData(''); // Clear the input field after adding data
+        console.log('Data added to the database with custom key: ' + word);
+        setWord("");
       })
       .catch((error) => {
         console.error('Error adding data: ' + error.message);
@@ -26,16 +32,15 @@ function Dashboard() {
 
   return (
     <div>
-      <h2>Save Word to database</h2>
-      <form onSubmit={handleSubmit}>
+      <h2>Add word to database</h2>
+      <div>
         <input
           type="text"
-          placeholder="Enter data"
-          value={data}
-          onChange={(e) => setData(e.target.value)}
+          value={word}
+          onChange={(e) => setWord(e.target.value)}
         />
-        <button type="submit">Add Data</button>
-      </form>
+      </div>
+      <button onClick={handleAddData}>Add Data</button>
     </div>
   );
 }
