@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { ref, set } from 'firebase/database';
 import { database } from '../firebase';
+import ListView from './ListView';
 
 function Dashboard() {
   const [word, setWord] = useState('');
@@ -22,7 +23,7 @@ function Dashboard() {
     // Set the data with the custom key
     set(dataRef, jsonData)
       .then(() => {
-        console.log('Data added to the database with custom key: ' + word);
+        console.log('Data added to the database: ' + word);
         setWord("");
       })
       .catch((error) => {
@@ -41,6 +42,7 @@ function Dashboard() {
         />
       </div>
       <button onClick={handleAddData}>Add Data</button>
+      <ListView/>
     </div>
   );
 }

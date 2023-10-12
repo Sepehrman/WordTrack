@@ -10,7 +10,7 @@ import Navbar from './components/Navbar';
 function App() {
   return (
     <BrowserRouter>
-      <Navbar></Navbar>
+      <Navbar/>
       <Routes>
         <Route path="/register" element={<Signup />} /> 
         <Route path="/" element={<Dashboard />} /> 
