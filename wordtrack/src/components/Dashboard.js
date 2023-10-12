@@ -5,30 +5,33 @@ import ListView from './ListView';
 
 function Dashboard() {
   const [word, setWord] = useState('');
-  const [data, setData] = useState('');
   const userEmail = sessionStorage.getItem('userEmail');
 
 
   const handleAddData = () => {
     // Ensure a custom key is provided
-
     // Create a reference to the database location where you want to add the data
-    const dataRef = ref(database, `data/${userEmail.replace('.', '_')}/${word}`);
-    const jsonData = {
-      'word' : word,
-      'note' : ''
+
+    if (userEmail) {
+
+      const dataRef = ref(database, `data/${userEmail.replace('.', '_')}/${word}`);
+      const jsonData = {
+        'word' : word,
+        'note' : ''
+      }
+    
+      // Set the data with the custom key
+      set(dataRef, jsonData)
+        .then(() => {
+          console.log('Data added to the database: ' + word);
+          setWord("");
+        })
+        .catch((error) => {
+          console.error('Error adding data: ' + error.message);
+        });
+    } else {
+      console.log("No user found!");
     }
-
-
-    // Set the data with the custom key
-    set(dataRef, jsonData)
-      .then(() => {
-        console.log('Data added to the database: ' + word);
-        setWord("");
-      })
-      .catch((error) => {
-        console.error('Error adding data: ' + error.message);
-      });
   };
 
   return (
