@@ -50,6 +50,7 @@ function FindDefinition() {
                 value={inputValue} 
                 onChange={handleInputChange} 
                 placeholder="Type something..."
+                data-cy="input-text-definition"
             />
             <button onClick={handleButtonClick}>Lookup Definition</button>
             {lookupWord && <WordDef lookupWord={lookupWord} />}
