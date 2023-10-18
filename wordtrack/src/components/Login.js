@@ -26,6 +26,8 @@ const Authentication = () => {
 
       // Redirect to the dashboard
       navigate('/'); // Redirect to the dashboard route
+      const userEmail = email; // Replace with the actual user's email
+      sessionStorage.setItem('userEmail', userEmail);
     } catch (error) {
       // Set error message
       setErrorMessage(error.message);

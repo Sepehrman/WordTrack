@@ -14,12 +14,6 @@ function FindDefinition() {
     setLookupWord(inputValue);
   };
 
-  const handleAddData = (word) => {
-    // Call the function to add data, you can implement this logic here
-    // For example, call an API to add data to the database
-    console.log(`Adding ${word} to the database...`);
-  };
-
   return (
     <div className="find-definition-container">
         <div className='header'>
@@ -36,7 +30,7 @@ function FindDefinition() {
       </div>
       <div className="word-def-container">
         {lookupWord && (
-          <WordDef lookupWord={lookupWord} onAddData={handleAddData} />
+          <WordDef lookupWord={lookupWord} />
         )}
       </div>
     </div>

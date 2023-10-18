@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import SingleWordMeaning from './SingleWordMeaning'
 import Audio from './Audio';
-import Note from './Note'
+import AddWordWithNote from '../components/AddWord';
 import './WordDef.css'; // Import the CSS file
 
 
@@ -74,10 +74,9 @@ const WordDef = ({ lookupWord, onAddData }) => {
           ))}
         </div>
         <div className='footer'>
-        <Note />
-        <button onClick={() => onAddData(lookupWord)}>Save Word</button>
+            <AddWordWithNote word={word}/>
         </div>
-     
+            
       </div>
     )}
   </div>
