@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
-import WordDef from './WordDef';
-import './FindDefinition.css'; // Import the CSS file
+import React, { useState } from "react";
+import WordDef from "./WordDef";
+import "./FindDefinition.css"; // Import the CSS file
 
 function FindDefinition() {
-  const [inputValue, setInputValue] = useState('');
-  const [lookupWord, setLookupWord] = useState('');
+  const [inputValue, setInputValue] = useState("");
+  const [lookupWord, setLookupWord] = useState("");
 
   const handleInputChange = (e) => {
     setInputValue(e.target.value);
@@ -22,21 +22,27 @@ function FindDefinition() {
 
   return (
     <div className="find-definition-container">
-        <div className='header'>
+      <div className="header">
         <h1>Wordtrack</h1>
-        </div>
+      </div>
       <div className="search-bar">
         <input
           type="text"
           value={inputValue}
           onChange={handleInputChange}
           placeholder="Type something..."
+          data-cy="input-text-definition-search"
         />
-        <button onClick={handleButtonClick}>Lookup Definition</button>
+        <button onClick={handleButtonClick} data-cy="btn-definition-search">
+          Lookup Definition
+        </button>
       </div>
       <div className="word-def-container">
         {lookupWord && (
-          <WordDef lookupWord={lookupWord} onAddData={handleAddData} />
+          <WordDef
+            lookupWord={lookupWord}
+            onAddData={handleAddData}
+          />
         )}
       </div>
     </div>
