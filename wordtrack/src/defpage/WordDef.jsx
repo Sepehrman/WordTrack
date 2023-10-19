@@ -34,7 +34,8 @@ const WordDef = ({ lookupWord, onAddData }) => {
     fetch(url)
       .then(response => {
         if (!response.ok) {
-          throw new Error('Network response was not ok ' + response.statusText);
+          console.log('Network response was not ok ' + response.statusText);
+          throw new Error("Could not find word definition");
         }
         return response.json();
       })
@@ -55,7 +56,7 @@ const WordDef = ({ lookupWord, onAddData }) => {
     {isLoading ? (
       <p>Loading...</p>
     ) : error ? (
-      <p>Error occurred: {error}</p>
+      <p>{error}</p>
     ) : (
       <div>
         <h1>Definition: {definition.word}</h1>

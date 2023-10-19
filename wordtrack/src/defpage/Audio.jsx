@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faVolumeUp } from '@fortawesome/free-solid-svg-icons';
 
 const Audio = ({audioUrlSrc, pronunciationText}) => {
 //   const [isPlaying, setIsPlaying] = useState(false);
@@ -9,6 +11,7 @@ const Audio = ({audioUrlSrc, pronunciationText}) => {
     const audioElement = document.getElementById('audio');
 
     audioElement.src = audioURL;
+    console.log(audioURL);
     audioElement.play();
 
     // if (isPlaying) {
@@ -26,10 +29,14 @@ const Audio = ({audioUrlSrc, pronunciationText}) => {
       <div id="audio-div" data-src-mp3={audioUrlSrc}></div>
       <audio id="audio"></audio>
       {/* <button onClick={playAudio}>{isPlaying ? 'Pause' : 'Play'}</button> */}
-      <button onClick={playAudio}>Pronounce</button>     {pronunciationText} 
-      {/* {audioUrlSrc} */}
+      <button onClick={playAudio}>
+        <FontAwesomeIcon icon={faVolumeUp} />
+      </button>
+      {pronunciationText}
     </div>
   );
 };
 
 export default Audio;
+
+
