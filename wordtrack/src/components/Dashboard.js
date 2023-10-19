@@ -1,51 +1,14 @@
 import React, { useState } from 'react';
-import { ref, set } from 'firebase/database';
-import { database } from '../firebase';
-import ListView from './ListView';
+import FindDefinition from '../defpage/FindDefinition';
+import './Dashboard.css'; // Import the CSS file
 
 function Dashboard() {
-  const [word, setWord] = useState('');
   const userEmail = sessionStorage.getItem('userEmail');
 
-
-  const handleAddData = () => {
-    // Ensure a custom key is provided
-    // Create a reference to the database location where you want to add the data
-
-    if (userEmail) {
-
-      const dataRef = ref(database, `data/${userEmail.replace('.', '_')}/${word}`);
-      const jsonData = {
-        'word' : word,
-        'note' : ''
-      }
-    
-      // Set the data with the custom key
-      set(dataRef, jsonData)
-        .then(() => {
-          console.log('Data added to the database: ' + word);
-          setWord("");
-        })
-        .catch((error) => {
-          console.error('Error adding data: ' + error.message);
-        });
-    } else {
-      console.log("No user found!");
-    }
-  };
-
   return (
-    <div>
-      <h2>Add word to database</h2>
-      <div>
-        <input
-          type="text"
-          value={word}
-          onChange={(e) => setWord(e.target.value)}
-        />
-      </div>
-      <button onClick={handleAddData}>Add Data</button>
-      <ListView/>
+    <div className="dashboard-container">
+      <h2>{userEmail ? `Logged in as ${userEmail}` : 'No user found'}</h2>
+      <FindDefinition />
     </div>
   );
 }

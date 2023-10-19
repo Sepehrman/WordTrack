@@ -6,9 +6,6 @@ function Navbar() {
     <nav>
       <ul>
         <li>
-          <Link to="/register">Signup</Link>
-        </li>
-        <li>
           <Link to="/login">Login</Link>
         </li>
         <li>

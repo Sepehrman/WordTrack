@@ -51,12 +51,6 @@ const Layout = () => {
           <li style={navStyles.listItem}>
             <Link style={navStyles.link}  to="/login">Login</Link>
           </li>
-          <li style={navStyles.listItem}>
-            <Link style={navStyles.link}  to="/register">Signup</Link>
-          </li>
-          <li style={navStyles.listItem}>
-            <Link style={navStyles.link}  to="/definition">FindDefinition</Link>
-          </li>
         </ul>
       </div>
       <Outlet />

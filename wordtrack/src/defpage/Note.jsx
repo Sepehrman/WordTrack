@@ -19,6 +19,7 @@ const Note = () => {
         placeholder="Write your notes here..."
         rows="6"
         cols="50"
+        data-cy="definition-note-textarea"
       />
     </div>
 

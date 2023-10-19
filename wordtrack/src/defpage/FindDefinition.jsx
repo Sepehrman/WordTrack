@@ -1,62 +1,71 @@
-// import React, { useState, useEffect  } from 'react';
-// import WordDef from './Components/WordDef'
-// function App() {
-//     const [inputValue, setInputValue] = useState(''); 
-//     const handleInputChange = (e) => {
-//         setInputValue(e.target.value);
-//       };
-//       useEffect(() => {
-//         console.log('Input changed:', inputValue);
-//       }, [inputValue]);
-//     return (
-//         <>
-
-//         <div>
-//         <input 
-//         type="text" 
-//         value={inputValue} 
-//         onChange={handleInputChange} 
-//         placeholder="Type something..."
-//       />
-//         <WordDef lookupWord={inputValue}/>
-//         </div>
-    
-//         </>
-//     );
-// }
-
-// export default App;
-
-
 import React, { useState } from 'react';
 import WordDef from './WordDef';
+import './FindDefinition.css';
+var words = require('an-array-of-english-words');
 
 function FindDefinition() {
-    const [inputValue, setInputValue] = useState(''); 
-    const [lookupWord, setLookupWord] = useState('');
+  const [inputValue, setInputValue] = useState('');
+  const [lookupWord, setLookupWord] = useState('');
+  const [autocompleteSuggestions, setAutocompleteSuggestions] = useState([]);
 
-    const handleInputChange = (e) => {
-        setInputValue(e.target.value);
-    };
+  const handleInputChange = (e) => {
+    const value = e.target.value;
+    setInputValue(value);
 
-    const handleButtonClick = () => {
-        setLookupWord(inputValue);
-    };
-
-    return (
-        <div>
-            <input 
-                type="text" 
-                value={inputValue} 
-                onChange={handleInputChange} 
-                placeholder="Type something..."
-            />
-            <button onClick={handleButtonClick}>Lookup Definition</button>
-            {lookupWord && <WordDef lookupWord={lookupWord} />}
-        </div>
+    const filteredSuggestions = words.filter((word) =>
+      word.toLowerCase().includes(value.toLowerCase())
     );
+
+    setAutocompleteSuggestions(filteredSuggestions.slice(0, 5));
+  };
+
+  const handleButtonClick = () => {
+    setLookupWord(inputValue);
+  };
+
+  const handleAddData = (word) => {
+    console.log(`Adding ${word} to the database...`);
+  };
+
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter') {
+      handleButtonClick();
+      document.getElementById('autocomplete-input').blur();
+    }
+  };
+
+  return (
+    <div className="find-definition-container">
+      <div className="header">
+        <h1>Wordtrack</h1>
+      </div>
+      <div className="search-bar">
+        <input
+          type="text"
+          value={inputValue}
+          onChange={handleInputChange}
+          list="autocomplete-suggestions"
+          placeholder="Type something..."
+          className="autocomplete-input"
+          id="autocomplete-input"
+          onKeyDown={handleKeyDown} // Handle Enter key press
+        />
+        <datalist id="autocomplete-suggestions">
+          {autocompleteSuggestions.map((suggestion, index) => (
+            <option key={index} value={suggestion} />
+          ))}
+        </datalist>
+        <button onClick={handleButtonClick} className="search-button">
+          Lookup Definition
+        </button>
+      </div>
+      <div className="word-def-container">
+        {lookupWord && (
+          <WordDef lookupWord={lookupWord} />
+        )}
+      </div>
+    </div>
+  );
 }
 
 export default FindDefinition;
-
-
