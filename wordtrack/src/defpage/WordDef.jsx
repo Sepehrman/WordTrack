@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from "react";
-import SingleWordMeaning from "./SingleWordMeaning";
-import Audio from "./Audio";
-import Note from "./Note";
-import "./WordDef.css"; // Import the CSS file
+import React, { useState, useEffect } from 'react';
+import SingleWordMeaning from './SingleWordMeaning'
+import Audio from './Audio';
+import AddWordWithNote from '../components/AddWord';
+import './WordDef.css'; // Import the CSS file
+
 
 const WordDef = ({ lookupWord, onAddData }) => {
   if (typeof lookupWord !== "string" || lookupWord === "") {
@@ -58,34 +59,35 @@ const WordDef = ({ lookupWord, onAddData }) => {
   let idCounter = 1;
 
   return (
-    <div className="container" data-cy="definition-container">
-      {isLoading ? (
-        <p>Loading...</p>
-      ) : error ? (
-        <p>Error occurred: {error}</p>
-      ) : (
-        <div>
-          <h1 data-cy="text-definition-word" >Definition: {definition.word}</h1>
-          <div className="scrollable-box">
-            {definition.meanings.map((x, index) => (
-              <React.Fragment key={idCounter++}>
-                <div>
-                  <Audio
-                    audioUrlSrc={definition.phonetics[index]?.audio}
-                    pronunciationText={definition.phonetics[index]?.text}
-                  />
-                  <SingleWordMeaning meaningEntry={x} />
-                </div>
-              </React.Fragment>
-            ))}
-          </div>
-          <div className="footer">
-            <Note />
-            <button onClick={() => onAddData(lookupWord)} data-cy="btn-save-word" >Save Word</button>
-          </div>
+    <div className='container'>
+    {isLoading ? (
+      <p>Loading...</p>
+    ) : error ? (
+      <p>Error occurred: {error}</p>
+    ) : (
+      <div>
+        <h1>Definition: {definition.word}</h1>
+        <div className="scrollable-box">
+          {definition.meanings.map((x, index) => (
+            <React.Fragment key={idCounter++}>
+
+              <div>
+                <Audio
+                  audioUrlSrc={definition.phonetics[index]?.audio}
+                  pronunciationText={definition.phonetics[index]?.text}
+                />
+                <SingleWordMeaning meaningEntry={x} />
+              </div>
+            </React.Fragment>
+          ))}
         </div>
-      )}
-    </div>
+        <div className='footer'>
+            <AddWordWithNote word={word}/>
+        </div>
+
+      </div>
+    )}
+  </div>
   );
 };
 

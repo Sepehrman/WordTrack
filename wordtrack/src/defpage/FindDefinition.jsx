@@ -61,10 +61,7 @@ function FindDefinition() {
       </div>
       <div className="word-def-container">
         {lookupWord && (
-          <WordDef
-            lookupWord={lookupWord}
-            onAddData={handleAddData}
-          />
+          <WordDef lookupWord={lookupWord} />
         )}
       </div>
     </div>
