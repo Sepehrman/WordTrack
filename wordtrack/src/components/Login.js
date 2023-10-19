@@ -1,12 +1,16 @@
-import React, { useState } from 'react';
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate
-import { firebaseApp } from '../firebase';
-import './login.css';
+import React, { useState } from "react";
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
+import { useNavigate } from "react-router-dom"; // Import useNavigate
+import { firebaseApp } from "../firebase";
+import "./login.css";
 
 const Authentication = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState(null);
   const navigate = useNavigate(); // Get the navigate function
 
@@ -25,7 +29,7 @@ const Authentication = () => {
       setErrorMessage(null);
 
       // Redirect to the dashboard
-      navigate('/'); // Redirect to the dashboard route
+      navigate("/"); // Redirect to the dashboard route
     } catch (error) {
       // Set error message
       setErrorMessage(error.message);
@@ -41,15 +45,21 @@ const Authentication = () => {
           placeholder="Email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
+          data-cy="input-text-email"
         />
         <input
           type="password"
           placeholder="Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
+          data-cy="input-text-password"
         />
-        <button onClick={() => handleAuthentication(false)}>Login</button>
-        <button onClick={() => handleAuthentication(true)}>Signup</button>
+        <button onClick={() => handleAuthentication(false)} data-cy="btn-login">
+          Login
+        </button>
+        <button onClick={() => handleAuthentication(true)} data-cy="btn-signup">
+          Signup
+        </button>
       </div>
       {errorMessage && <p className="error-message">{errorMessage}</p>}
     </div>
