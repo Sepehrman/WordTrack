@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import {
   getAuth,
   createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
+  signInWithEmailAndPassword
 } from "firebase/auth";
-import { useNavigate } from "react-router-dom"; // Import useNavigate
+import { useNavigate } from "react-router-dom";
 import { firebaseApp } from "../firebase";
 import "./login.css";
 
@@ -12,29 +12,56 @@ const Authentication = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState(null);
-  const navigate = useNavigate(); // Get the navigate function
+  const navigate = useNavigate();
 
   const handleAuthentication = async (isSignup) => {
     const auth = getAuth(firebaseApp);
     try {
+      
+
       if (isSignup) {
-        // Signup
+        if (!validateEmail(email) || !validatePassword(password)) {
+        setErrorMessage("Invalid email or password format.");
+        return;
+      }
         await createUserWithEmailAndPassword(auth, email, password);
       } else {
-        // Login
         await signInWithEmailAndPassword(auth, email, password);
       }
 
-      // Clear error message
       setErrorMessage(null);
-
-      // Redirect to the dashboard
-      navigate('/'); // Redirect to the dashboard route
-      const userEmail = email; // Replace with the actual user's email
+      navigate('/');
+      const userEmail = email;
       sessionStorage.setItem('userEmail', userEmail);
     } catch (error) {
-      // Set error message
-      setErrorMessage(error.message);
+      setErrorMessage(getFirebaseErrorMessage(error));
+    }
+  };
+
+  const validateEmail = (email) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
+
+  const validatePassword = (password) => {
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/;
+    return passwordRegex.test(password);
+  };
+
+  const getFirebaseErrorMessage = (error) => {
+    console.log(error.code);
+    switch (error.code) {
+      case "auth/email-already-in-use":
+        return "The email address is already in use.";
+      case "auth/invalid-email":
+        return "Invalid email address format.";
+      case "auth/wrong-password":
+        return "Incorrect password. Please try again.";
+      case "auth/invalid-login-credentials":
+        return "Invalid Login Credentials.\n please check your Email & Password";
+      // Add more cases for other Firebase error codes as needed
+      default:
+        return "An error occurred. Please try again.";
     }
   };
 
