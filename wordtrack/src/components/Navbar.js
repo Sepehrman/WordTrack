@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import { Outlet, Link } from "react-router-dom";
 
 const navStyles = {
@@ -25,38 +25,45 @@ const navStyles = {
   link: {
     textDecoration: "none",
     color: "Black",
-  }
+  },
 };
 
-const Navbar = ({userEmail, setUserEmail}) => {
-
+const Navbar = ({ userEmail, setUserEmail }) => {
   const signOut = () => {
     setUserEmail(null);
-    sessionStorage.removeItem('userEmail');
+    sessionStorage.removeItem("userEmail");
   };
   return (
     <div>
       <div style={navStyles.container}>
         <h1 style={navStyles.title}>
           <li style={navStyles.listItem}>
-            <Link style={navStyles.link} to="/">WordTrack</Link>
+            <Link style={navStyles.link} to="/">
+              WordTrack
+            </Link>
           </li>
         </h1>
         <ul style={navStyles.list}>
           <li style={navStyles.listItem}>
-            <Link style={navStyles.link}  to="/">Home</Link>
+            <Link style={navStyles.link} to="/">
+              Home
+            </Link>
           </li>
           <li style={navStyles.listItem}>
-            <Link style={navStyles.link}  to="/profile">Profile</Link>
+            <Link style={navStyles.link} to="/profile">
+              Profile
+            </Link>
           </li>
           <li style={navStyles.listItem}>
-            {
-              userEmail ? (
-                <Link style={navStyles.link} onClick={signOut}>Sign Out</Link>
-              ) : (
-                <Link style={navStyles.link}  to="/login">Login</Link>
-              )
-            }
+            {userEmail ? (
+              <Link style={navStyles.link} onClick={signOut}>
+                Sign Out
+              </Link>
+            ) : (
+              <Link style={navStyles.link} to="/login">
+                Login
+              </Link>
+            )}
           </li>
         </ul>
       </div>
