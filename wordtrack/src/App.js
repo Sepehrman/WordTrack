@@ -1,8 +1,8 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom'; // Import Routes from react-router-dom
 import logo from "./logo.svg";
 
-import Layout from "./components/Layout";
+import Navbar from "./components/Navbar";
 import Profile from "./components/Profile";
 import Login from './components/Login';
 import Dashboard from './components/Dashboard';
@@ -10,12 +10,19 @@ import Dashboard from './components/Dashboard';
 
 
 function App() {
+  const[userEmail, setUserEmail] = useState(sessionStorage.getItem('userEmail'));
+
+  useEffect(() => {
+    setUserEmail(sessionStorage.getItem('userEmail'));
+    console.log("userEmail: ", userEmail);
+  }, []);
+
   return (
     <BrowserRouter>
-      <Layout/>
+      <Navbar userEmail={userEmail} setUserEmail={setUserEmail}/>
       <Routes>
-        <Route path="/" element={<Dashboard />} /> 
-        <Route path="/login" element={<Login />} />
+        <Route path="/" element={<Dashboard userEmail={userEmail} />} /> 
+        <Route path="/login" element={<Login setUserEmail={setUserEmail} />} />
         <Route path="/profile" element={<Profile />} />
         {/* Add routes for the dashboard or user profile */}
       </Routes>

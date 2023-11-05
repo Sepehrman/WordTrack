@@ -25,7 +25,7 @@ const WordDef = ({ lookupWord, onAddData }) => {
   );
 
   // State to hold the fetched definition
-  const [definition, setDefinition] = useState(null);
+  const [definition, setDefinition] = useState({});
 
   // State to handle loading
   const [isLoading, setIsLoading] = useState(true);
@@ -68,18 +68,22 @@ const WordDef = ({ lookupWord, onAddData }) => {
       <div>
         <h1>Definition: {definition.word}</h1>
         <div className="scrollable-box">
-          {definition.meanings.map((x, index) => (
-            <React.Fragment key={idCounter++}>
-
-              <div>
-                <Audio
-                  audioUrlSrc={definition.phonetics[index]?.audio}
-                  pronunciationText={definition.phonetics[index]?.text}
-                />
-                <SingleWordMeaning meaningEntry={x} />
-              </div>
-            </React.Fragment>
-          ))}
+          {
+            definition.meanings ? (
+              definition.meanings.map((x, index) => (
+                <React.Fragment key={idCounter++}>
+    
+                  <div>
+                    <Audio
+                      audioUrlSrc={definition.phonetics[index]?.audio}
+                      pronunciationText={definition.phonetics[index]?.text}
+                    />
+                    <SingleWordMeaning meaningEntry={x} />
+                  </div>
+                </React.Fragment>
+              ))
+            ) : undefined
+          }
         </div>
         <div className='footer'>
             <AddWordWithNote word={word}/>
