@@ -5,6 +5,8 @@ import logo from "./logo.svg";
 import Layout from "./components/Layout";
 import Profile from "./components/Profile";
 import Login from './components/Login';
+import SignUp from './components/SignUp';
+
 import Dashboard from './components/Dashboard';
 
 
@@ -16,6 +18,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Dashboard />} /> 
         <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<SignUp />} />
         <Route path="/profile" element={<Profile />} />
         {/* Add routes for the dashboard or user profile */}
       </Routes>
