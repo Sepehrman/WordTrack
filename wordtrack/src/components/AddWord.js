@@ -27,7 +27,7 @@ function AddWordWithNote({ word }) {
   // Handles adding the note to the specific word in the database
   const handleAddData = () => {
     if (userEmail) {
-      const dataRef = ref(database, `data/${userEmail.replace('.', '_')}/${word}`);
+      const dataRef = ref(database, `data/${userEmail.replace('.', '_')}/words/${word}`);
       const jsonData = {
         note: note,
       };

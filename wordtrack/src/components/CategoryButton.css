@@ -1,0 +1,73 @@
+/* CategoryButton.css */
+
+/* Styles for the button container */
+.button-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+    border: 1px black solid;
+    border-radius: 5px;
+    
+  }
+  
+  /* Styles for the category button */
+
+  
+  /* Styles for the category button in edit mode */
+  .category-button-edit {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  /* Styles for the text input in edit mode */
+  .category-button-edit input {
+    margin: 5px;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+  }
+  
+  /* Styles for the Save button in edit mode */
+  .edit-button {
+    background-color: transparent;
+    color: black;
+    border: none;
+    border-radius: 3px;
+    padding: 5px 10px;
+    cursor: pointer;
+    margin: 5px;
+  }
+  
+  /* Styles for the category button in view mode */
+  .category-button-view {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  /* Styles for the profileCategoryButton in view mode */
+  .profileCategoryButton {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    padding: 30px 30px;
+    cursor: pointer;
+    margin: 5px;
+    width: 100%; 
+  }
+  
+  /* Styles for the Delete button */
+  .delete-button {
+    background-color: transparent;
+    color:black;
+    border: none;
+    border-radius: 3px;
+    padding: 5px 10px;
+    cursor: pointer;
+    margin: 5px;
+  }
+  
