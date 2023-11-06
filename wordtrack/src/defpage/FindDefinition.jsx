@@ -36,9 +36,6 @@ function FindDefinition() {
 
   return (
     <div className="find-definition-container">
-      <div className="header">
-        <h1>Wordtrack</h1>
-      </div>
       <div className="search-bar">
         <input
           type="text"
