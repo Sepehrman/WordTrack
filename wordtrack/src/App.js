@@ -23,7 +23,7 @@ function App() {
     <BrowserRouter>
       <Navbar userEmail={userEmail} setUserEmail={setUserEmail} />
       <Routes>
-        <Route path="/" element={<Dashboard />} /> 
+        <Route path="/" element={<Dashboard userEmail={userEmail}/>} /> 
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/profile" element={<Profile />} />
