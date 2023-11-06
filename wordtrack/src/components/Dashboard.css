@@ -6,7 +6,7 @@
     align-items: center;
     justify-content: center;
     min-height: 100vh; /* Set a minimum height of 100% of the viewport height */
-    padding: 20px; /* Add some padding for spacing */
+    /* padding: 20px; Add some padding for spacing */
   }
   
   .dashboard-content {
