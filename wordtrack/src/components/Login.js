@@ -4,11 +4,11 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
 } from "firebase/auth";
-import { useNavigate } from "react-router-dom"; // Import useNavigate
+import { useNavigate, history } from "react-router-dom"; // Import useNavigate
 import { firebaseApp } from "../firebase";
 import "./login.css";
 
-const Authentication = () => {
+const Authentication = ({ setUserEmail }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState(null);
@@ -29,9 +29,10 @@ const Authentication = () => {
       setErrorMessage(null);
 
       // Redirect to the dashboard
-      navigate('/'); // Redirect to the dashboard route
-      const userEmail = email; // Replace with the actual user's email
-      sessionStorage.setItem('userEmail', userEmail);
+      navigate("/"); // Redirect to the dashboard route
+      const retrievedUserEmail = email; // Replace with the actual user's email
+      setUserEmail(retrievedUserEmail);
+      sessionStorage.setItem("userEmail", retrievedUserEmail);
     } catch (error) {
       // Set error message
       setErrorMessage(error.message);
