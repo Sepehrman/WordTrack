@@ -5,7 +5,7 @@
     flex-direction: column;
     align-items: center;
     /* justify-content: center; */
-    padding-top: 120px; /* Padding for navbar (at least 60px) */
+    padding-top: 20px; /* Padding for navbar (at least 60px) */
     /* padding: 20px; Add some padding for spacing */
   }
   
@@ -45,5 +45,21 @@
     left: auto;
     font-weight: 500;
     font-size: medium;
+  }
+
+  .header {
+    text-align: center; /* Center align the text */
+    background-color: #007BFF; /* Set a background color */
+    color: #fff; /* Text color */
+    padding: 20px; /* Add padding for spacing */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+    font-size: 24px; /* Increase the font size */
+    border-radius: 10px;
+    margin-top: 50px;
+  }
+  
+  .header h1 {
+    margin: 0; /* Remove default margin to avoid extra spacing */
+    font-weight: bold; /* Make the text bold */
   }
   

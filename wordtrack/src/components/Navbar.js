@@ -27,7 +27,15 @@ const navStyles = {
   link: {
     textDecoration: "none",
     color: "Black",
+    cursor: "pointer",
   },
+  loggedInAs: {
+    position: "absolute",
+    right: "5px",
+    left: "auto",
+    fontWeight: "500",
+    fontSize: "medium",
+  }
 };
 
 const Navbar = ({ userEmail, setUserEmail }) => {
@@ -58,9 +66,9 @@ const Navbar = ({ userEmail, setUserEmail }) => {
           </li>
           <li style={navStyles.listItem}>
             {userEmail ? (
-              <Link style={navStyles.link} onClick={signOut}>
+              <a style={navStyles.link} onClick={signOut}>
                 Sign Out
-              </Link>
+              </a>
             ) : (
               <Link style={navStyles.link} to="/login">
                 Login
@@ -68,6 +76,9 @@ const Navbar = ({ userEmail, setUserEmail }) => {
             )}
           </li>
         </ul>
+        <h2 style={navStyles.loggedInAs}>
+          {userEmail ? `Logged in as ${userEmail}` : "No user found"}
+        </h2>
       </div>
       <Outlet />
     </div>
