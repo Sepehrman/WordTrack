@@ -72,6 +72,7 @@ const WordDef = ({ lookupWord, onAddData }) => {
         <p>Error occurred: {error}</p>
       ) : (
         <div>
+          <button onClick={() => window.alert('Word Added')}>Add word</button>
           <h1>Definition: {definition.word}</h1>
           <div className="scrollable-box">
             {pronunciation ? (
