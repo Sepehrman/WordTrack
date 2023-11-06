@@ -4,8 +4,10 @@ import logo from "./logo.svg";
 
 import Navbar from "./components/Navbar";
 import Profile from "./components/Profile";
-import Login from "./components/Login";
-import Dashboard from "./components/Dashboard";
+import Login from './components/Login';
+import SignUp from './components/SignUp';
+
+import Dashboard from './components/Dashboard';
 
 function App() {
   const [userEmail, setUserEmail] = useState(
@@ -21,8 +23,9 @@ function App() {
     <BrowserRouter>
       <Navbar userEmail={userEmail} setUserEmail={setUserEmail} />
       <Routes>
-        <Route path="/" element={<Dashboard userEmail={userEmail} />} />
-        <Route path="/login" element={<Login setUserEmail={setUserEmail} />} />
+        <Route path="/" element={<Dashboard />} /> 
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<SignUp />} />
         <Route path="/profile" element={<Profile />} />
         {/* Add routes for the dashboard or user profile */}
       </Routes>
