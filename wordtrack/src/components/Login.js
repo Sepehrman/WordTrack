@@ -20,6 +20,7 @@ const Login = () => {
       await signInWithEmailAndPassword(auth, email, password);
       setErrorMessage(null);
       navigate('/');
+      window.location.reload();
       const userEmail = email;
       sessionStorage.setItem('userEmail', userEmail);
     } catch (error) {
