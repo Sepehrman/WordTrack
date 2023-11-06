@@ -4,7 +4,7 @@ import Audio from "./Audio";
 import AddWordWithNote from "../components/AddWord";
 import "./WordDef.css"; // Import the CSS file
 
-const WordDef = ({ lookupWord, onAddData }) => {
+const WordDef = ({ lookupWord}) => {
   if (typeof lookupWord !== "string" || lookupWord === "") {
     console.log(lookupWord);
     console.log(

@@ -1,0 +1,63 @@
+/* CategoryModal.css */
+
+.category-modal {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 20px;
+    max-height: 400px;
+    overflow-y: auto;
+  }
+  
+  .word-list {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .word-list .word-button {
+    margin: 5px 0;
+  }
+  
+  .close-modal {
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: #ff0000;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+  
+  .close-modal:hover {
+    background-color: #cc0000;
+  }
+  
+  .cue-cards {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 20px;
+    max-width: 60vw;
+    overflow: hidden;
+    z-index: 999; /* Ensure it's on top of other content */
+  }
+  
+  .cue-cards button {
+    margin: 5px;
+    padding: 10px 20px;
+    background-color: #ff0000;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+  
+  .cue-cards button:hover {
+    background-color: #cc0000;
+  }
+  
