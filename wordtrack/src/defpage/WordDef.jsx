@@ -32,6 +32,8 @@ const WordDef = ({ lookupWord, onAddData }) => {
   // State to handle error
   const [error, setError] = useState(null);
 
+  const [pronunciation, setPronunciation] = useState({});
+
   useEffect(() => {
     // The URL for the API endpoint, with the word inserted into the string
     const url = `https://api.dictionaryapi.dev/api/v2/entries/en/${word}`;
@@ -48,6 +50,11 @@ const WordDef = ({ lookupWord, onAddData }) => {
       .then((data) => {
         setDefinition(data[0]);
         setIsLoading(false);
+        setPronunciation(
+          data[0]["phonetics"].filter(
+            (element) => element["audio"].length !== 0
+          )[0]
+        ); // Get first with valid audio src
       })
       .catch((error) => {
         setError(error.toString());
@@ -67,14 +74,16 @@ const WordDef = ({ lookupWord, onAddData }) => {
         <div>
           <h1>Definition: {definition.word}</h1>
           <div className="scrollable-box">
+            {pronunciation ? (
+              <Audio
+                audioUrlSrc={pronunciation.audio}
+                pronunciationText={pronunciation.text}
+              />
+            ) : undefined}
             {definition.meanings
               ? definition.meanings.map((x, index) => (
                   <React.Fragment key={idCounter++}>
                     <div>
-                      <Audio
-                        audioUrlSrc={definition.phonetics[index]?.audio}
-                        pronunciationText={definition.phonetics[index]?.text}
-                      />
                       <SingleWordMeaning meaningEntry={x} />
                     </div>
                   </React.Fragment>
