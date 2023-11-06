@@ -4,10 +4,12 @@ import { Outlet, Link } from "react-router-dom";
 const navStyles = {
   container: {
     display: "flex",
+    // position: "absolute",
     flexDirection: "row",
     height: 60,
-    width: "100vw",
+    width: "100%",
     alignItems: "center",
+    backgroundColor: "white",
   },
   title: {
     paddingLeft: 20,

@@ -4,9 +4,9 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    min-height: 100vh; /* Set a minimum height of 100% of the viewport height */
-    padding: 20px; /* Add some padding for spacing */
+    /* justify-content: center; */
+    padding-top: 120px; /* Padding for navbar (at least 60px) */
+    /* padding: 20px; Add some padding for spacing */
   }
   
   .dashboard-content {
@@ -36,5 +36,14 @@
   
   button:hover {
     background-color: #0056b3;
+  }
+
+  .h2-logged-in-as {
+    position: absolute;
+    top: 50px;
+    right: 5px;
+    left: auto;
+    font-weight: 500;
+    font-size: medium;
   }
   
