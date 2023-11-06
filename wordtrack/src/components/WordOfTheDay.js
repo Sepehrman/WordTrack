@@ -4,11 +4,13 @@ var seedrandom = require("seedrandom");
 
 const styles = {
   container: {
-    // display: "flex",
-    // height: 60,
-    backgroundColor: "red",
+    textAlign: "center",
     maxWidth: "70vw",
+    minHeight: "180px",
     alignItems: "center",
+  },
+  underline: {
+    textDecoration: "underline",
   },
 };
 
@@ -19,9 +21,8 @@ const WordOfTheDay = () => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    var daysSinceEpochTime = getDaysSinceEpochTime() + 14;
-    var wordOfTheDay = getWordOfTheDayBasedOnSeededRandom(daysSinceEpochTime);  // Random Index from seed
-
+    var daysSinceEpochTime = getDaysSinceEpochTime();
+    var wordOfTheDay = getWordOfTheDayBasedOnSeededRandom(daysSinceEpochTime); // Random Index from seed
     setWordOfTheDay(wordOfTheDay);
     getDefinitionOfWord(wordOfTheDay);
   }, []);
@@ -34,19 +35,18 @@ const WordOfTheDay = () => {
 
     // get total days between two dates
     var difference = Math.floor(res / 86400);
-    console.log(difference);
     return difference;
   };
 
   const getWordOfTheDayBasedOnSeededRandom = (seed) => {
-    var rng = seedrandom(seed);   // Set Seed for random
+    var rng = seedrandom(seed); // Set Seed for random
     var rand = rng();
 
     // Get index in array
     var index = Math.floor(words.length * rand);
     var wordOfTheDay = words[index];
     return wordOfTheDay;
-  }
+  };
 
   const getDefinitionOfWord = async (word) => {
     // The URL for the API endpoint, with the word inserted into the string
@@ -55,8 +55,6 @@ const WordOfTheDay = () => {
     // Fetch data from the API
     fetch(url)
       .then((response) => {
-        console.log("Response: ", response);
-        
         // If word definition does not exist, used word to seed next random word and get definition
         if (response.status === 404) {
           var newWordOfTheDay = getWordOfTheDayBasedOnSeededRandom(word);
@@ -70,8 +68,7 @@ const WordOfTheDay = () => {
         return response.json();
       })
       .then((data) => {
-        setDefinition(data[0].meanings[0].definitions[0].definition);
-        console.log(data[0].meanings[0].definitions[0].definition);
+        setDefinition(data[0].meanings[0].definitions[0].definition);   // Use First Definition
         setIsLoading(false);
       })
       .catch((error) => {
@@ -82,12 +79,16 @@ const WordOfTheDay = () => {
 
   return (
     <div>
-      {definition ? (
-        <div style={styles.container}>
-          <h1>Word of the Day: {wordOfTheDay}</h1>
-          <h3>{definition ? definition : error}</h3>
-        </div>
-      ) : undefined}
+      <div style={styles.container}>
+        {definition ? (
+          <>
+            <h1>
+              Today's word is <a style={styles.underline}>{wordOfTheDay}</a>
+            </h1>
+            <h3>"{definition ? definition : error}"</h3>
+          </>
+        ) : undefined}
+      </div>
     </div>
   );
 };
