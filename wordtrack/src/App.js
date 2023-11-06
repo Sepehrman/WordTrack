@@ -27,7 +27,6 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/profile" element={<Profile />} />
-        {/* Add routes for the dashboard or user profile */}
       </Routes>
     </BrowserRouter>
   );

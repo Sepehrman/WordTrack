@@ -4,7 +4,6 @@ import { Outlet, Link } from "react-router-dom";
 const navStyles = {
   container: {
     display: "flex",
-    // position: "absolute",
     flexDirection: "row",
     height: 60,
     width: "100%",
@@ -12,7 +11,7 @@ const navStyles = {
     backgroundColor: "white",
   },
   title: {
-    paddingLeft: 20,
+    paddingLeft: 0,
   },
   list: {
     display: "flex",
