@@ -72,7 +72,7 @@ const WordDef = ({ lookupWord}) => {
         <p>Error occurred: {error}</p>
       ) : (
         <div>
-          <h1>Definition: {definition.word}</h1>
+          <h1 data-cy="text-definition-word" >Definition: {definition.word}</h1>
           <div className="scrollable-box">
             {pronunciation ? (
               <Audio
