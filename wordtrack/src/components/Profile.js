@@ -88,8 +88,9 @@ const Profile = () => {
                   placeholder="New Category"
                   value={newCategory}
                   onChange={(e) => setNewCategory(e.target.value)}
+                  data-cy="profile-text-bar"
                 />
-                <button onClick={handleAddCategory}>Add Category</button>
+                <button onClick={handleAddCategory} data-cy="category-button">Add Category</button>
               </div>
               <div className="categoriesCardContainer">
                 <div className="category-row">
