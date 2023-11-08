@@ -61,3 +61,13 @@
     background-color: #cc0000;
   }
   
+
+  /* CategoryModal.css */
+.cue-card {
+  filter: blur(4px); /* Default blur */
+  transition: filter 0.3s ease; /* Smooth transition for blur effect */
+}
+
+.cue-card.blur {
+  filter: none; /* Remove blur on click */
+}
