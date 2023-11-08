@@ -1,15 +1,19 @@
-import React, { useState } from 'react';
-import FindDefinition from '../defpage/FindDefinition';
-import './Dashboard.css'; // Import the CSS file
+import React from "react";
+import FindDefinition from "../defpage/FindDefinition";
+import WordOfTheDay from "./WordOfTheDay";
+import "./Dashboard.css"; // Import the CSS file
 
-function Dashboard() {
-  const userEmail = sessionStorage.getItem('userEmail');
-
+function Dashboard({ userEmail }) {
   return (
-    <div className="dashboard-container">
-      <h2>{userEmail ? `Logged in as ${userEmail}` : 'No user found'}</h2>
-      <FindDefinition />
-    </div>
+    <>
+      <div className="header">
+        <h1>Wordtrack</h1>
+      </div>
+      <div className="dashboard-container">
+        <WordOfTheDay />
+        <FindDefinition />
+      </div>
+    </>
   );
 }
 

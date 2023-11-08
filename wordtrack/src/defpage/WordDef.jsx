@@ -1,11 +1,10 @@
-import React, { useState, useEffect } from 'react';
-import SingleWordMeaning from './SingleWordMeaning'
-import Audio from './Audio';
-import AddWordWithNote from '../components/AddWord';
-import './WordDef.css'; // Import the CSS file
+import React, { useState, useEffect } from "react";
+import SingleWordMeaning from "./SingleWordMeaning";
+import Audio from "./Audio";
+import AddWordWithNote from "../components/AddWord";
+import "./WordDef.css"; // Import the CSS file
 
-
-const WordDef = ({ lookupWord, onAddData }) => {
+const WordDef = ({ lookupWord}) => {
   if (typeof lookupWord !== "string" || lookupWord === "") {
     console.log(lookupWord);
     console.log(
@@ -25,13 +24,15 @@ const WordDef = ({ lookupWord, onAddData }) => {
   );
 
   // State to hold the fetched definition
-  const [definition, setDefinition] = useState(null);
+  const [definition, setDefinition] = useState({});
 
   // State to handle loading
   const [isLoading, setIsLoading] = useState(true);
 
   // State to handle error
   const [error, setError] = useState(null);
+
+  const [pronunciation, setPronunciation] = useState({});
 
   useEffect(() => {
     // The URL for the API endpoint, with the word inserted into the string
@@ -41,7 +42,7 @@ const WordDef = ({ lookupWord, onAddData }) => {
     fetch(url)
       .then((response) => {
         if (!response.ok) {
-          console.log('Network response was not ok ' + response.statusText);
+          console.log("Network response was not ok " + response.statusText);
           throw new Error("Could not find word definition");
         }
         return response.json();
@@ -49,6 +50,11 @@ const WordDef = ({ lookupWord, onAddData }) => {
       .then((data) => {
         setDefinition(data[0]);
         setIsLoading(false);
+        setPronunciation(
+          data[0]["phonetics"].filter(
+            (element) => element["audio"].length !== 0
+          )[0]
+        ); // Get first with valid audio src
       })
       .catch((error) => {
         setError(error.toString());
@@ -59,35 +65,37 @@ const WordDef = ({ lookupWord, onAddData }) => {
   let idCounter = 1;
 
   return (
-    <div className='container'>
-    {isLoading ? (
-      <p>Loading...</p>
-    ) : error ? (
-      <p>Error occurred: {error}</p>
-    ) : (
-      <div>
-        <h1>Definition: {definition.word}</h1>
-        <div className="scrollable-box">
-          {definition.meanings.map((x, index) => (
-            <React.Fragment key={idCounter++}>
-
-              <div>
-                <Audio
-                  audioUrlSrc={definition.phonetics[index]?.audio}
-                  pronunciationText={definition.phonetics[index]?.text}
-                />
-                <SingleWordMeaning meaningEntry={x} />
-              </div>
-            </React.Fragment>
-          ))}
+    <div className="container">
+      {isLoading ? (
+        <p>Loading...</p>
+      ) : error ? (
+        <p>Error occurred: {error}</p>
+      ) : (
+        <div>
+          <h1>Definition: {definition.word}</h1>
+          <div className="scrollable-box">
+            {pronunciation ? (
+              <Audio
+                audioUrlSrc={pronunciation.audio}
+                pronunciationText={pronunciation.text}
+              />
+            ) : undefined}
+            {definition.meanings
+              ? definition.meanings.map((x, index) => (
+                  <React.Fragment key={idCounter++}>
+                    <div>
+                      <SingleWordMeaning meaningEntry={x} />
+                    </div>
+                  </React.Fragment>
+                ))
+              : undefined}
+          </div>
+          <div className="footer">
+            <AddWordWithNote word={word} />
+          </div>
         </div>
-        <div className='footer'>
-            <AddWordWithNote word={word}/>
-        </div>
-
-      </div>
-    )}
-  </div>
+      )}
+    </div>
   );
 };
 
