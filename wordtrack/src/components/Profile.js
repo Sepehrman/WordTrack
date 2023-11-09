@@ -132,7 +132,7 @@ const Profile = () => {
           </div>
         </div>
         {showWordDef && (
-          <div className={`popup ${showWordDef ? 'open' : ''}`}>
+          <div className={`popup ${showWordDef ? 'open' : ''}`} data-cy="cue-card-def">
             <button className="close-button" onClick={handleCloseWordDef}>
               Close
             </button>

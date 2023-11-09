@@ -87,7 +87,7 @@ describe('personal profile test', () => {
       cy.wait(500)
       cy.get('[data-cy="category-button"]').click()
       cy.wait(500)
-      cy.get('[data-cy="profile-text-bar"]').clear().type("bananna")
+      cy.get('[data-cy="profile-text-bar"]').clear().type("bannana")
       cy.wait(500)
       cy.get('[data-cy="category-button"]').click()
       cy.wait(500)
