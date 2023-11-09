@@ -10,7 +10,11 @@ const CategoryModal = ({ category, onClose }) => {
   const [definitionComponents, setDefinitionComponents] = useState([]);
   const [currentCueCardIndex, setCurrentCueCardIndex] = useState(0);
   const [showCueCards, setShowCueCards] = useState(false);
+  const [isCueCardBlurred, setIsCueCardBlurred] = useState(false);
   const userEmail = sessionStorage.getItem('userEmail')?.replace(/\./g, '_') || '';
+  const toggleCueCardBlur = () => {
+    setIsCueCardBlurred(!isCueCardBlurred);
+  };
 
   const handleDeleteWord = (category, word) => {
     const userCategoryRef = ref(database, `data/${userEmail}/categories/${category}`);
@@ -42,6 +46,8 @@ const CategoryModal = ({ category, onClose }) => {
         setDefinitionComponents([]); // Clear definition components if no words
       }
     });
+
+    
 
     return () => {
       off(categoryRef);
@@ -83,7 +89,12 @@ const CategoryModal = ({ category, onClose }) => {
           </button>
           <button onClick={() => navigateCueCards(-1)}>Previous</button>
           <button onClick={() => navigateCueCards(1)}>Next</button>
+
+          <h2> Word : {words[currentCueCardIndex]}</h2>
+
+          <div className={"cue-card " + (isCueCardBlurred ? "blur" : "")} onClick={toggleCueCardBlur}>
           {definitionComponents[currentCueCardIndex]}
+        </div>
         </div>
       )}
     </div>

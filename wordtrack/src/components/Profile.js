@@ -82,16 +82,22 @@ const Profile = () => {
           <div className="colOne">
             <div className="categories">
               <h3 className="myProfileText">Categories</h3>
-              <div>
+              <div className="add-category">
+              <div className="add-category-container">
                 <input
                   type="text"
                   placeholder="New Category"
                   value={newCategory}
                   onChange={(e) => setNewCategory(e.target.value)}
                   data-cy="profile-text-bar"
+                  className="search-bar"
                 />
-                <button onClick={handleAddCategory} data-cy="category-button">Add Category</button>
+          
+                <button className="add-category-button" onClick={handleAddCategory} data-cy="category-button">
+                  Add Category
+                </button>
               </div>
+            </div>
               <div className="categoriesCardContainer">
                 <div className="category-row">
                   {categories.map((category, index) => (
@@ -107,15 +113,6 @@ const Profile = () => {
           </div>
           <div className="colTwo">
             <h2>Saved Words</h2>
-            <form>
-              <label>
-                <input
-                  type="text"
-                  value={searchValue}
-                  onChange={(e) => handleChange(e.target.value)}
-                />
-              </label>
-            </form>
             <div className="reviewWordsContainer">
               {reviewWords.map((word, index) => (
                 <WordButton

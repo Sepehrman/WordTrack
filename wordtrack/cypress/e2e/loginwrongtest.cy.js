@@ -10,7 +10,6 @@ describe('route test', () => {
       cy.get('[data-cy="input-text-email"]').should("exist")
       cy.get('[data-cy="input-text-password"]').should("exist")
       cy.get('[data-cy="btn-login"]').should("exist")
-      cy.get('[data-cy="btn-signup"]').should("exist")
     })
   })
   

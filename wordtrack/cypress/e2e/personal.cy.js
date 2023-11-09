@@ -72,7 +72,7 @@ describe('personal profile test', () => {
       cy.get('[data-cy="category-apple"]').should("not.exist")
   })})
 
-  describe('adds categories in chronilogical order', () => {
+  describe('adds categories in alphabetical order', () => {
     it('should exist', () => {
       cy.visit('/login')
       cy.get('[data-cy="input-text-email"]').clear().type("nathan@mail.com")
