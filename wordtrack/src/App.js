@@ -6,6 +6,7 @@ import Navbar from "./components/Navbar";
 import Profile from "./components/Profile";
 import Login from './components/Login';
 import SignUp from './components/SignUp';
+import PrivateRoute from "./components/PrivateRoute";
 
 import Dashboard from './components/Dashboard';
 
@@ -26,7 +27,13 @@ function App() {
         <Route path="/" element={<Dashboard userEmail={userEmail}/>} /> 
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
-        <Route path="/profile" element={<Profile />} />
+
+        <Route path="/profile" element={
+          <PrivateRoute userEmail={userEmail}>
+          <Profile />
+        </PrivateRoute>
+        } />
+        
       </Routes>
     </BrowserRouter>
   );
