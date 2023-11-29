@@ -1,7 +1,7 @@
 /* styles.css */
 
 .container {
-    min-width: 80vw;
+    /* min-width: 80vw; */
     min-height: 80vh;
     display: flex;
     flex-direction: row;
@@ -98,4 +98,24 @@
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+  }
+
+  .add-category {
+    display: flex;
+    align-items: center; /* Vertically center the items */
+    justify-content: center; /* Horizontally center the items */
+  }
+  
+  .add-category-container {
+    display: flex;
+    align-items: center;
+  }
+  
+  .search-bar {
+    padding: 10px;
+    /* You can adjust other styles as needed */
+  }
+  
+  .add-category-button {
+    /* Add styling for the button if needed */
   }
