@@ -18,10 +18,10 @@ const SignUp = ({ validateInput, isValid, errMsg }) => {
   const navigate = useNavigate();
 
   const handleSignUp = async () => {
+    let isValid2 = false;
     const auth = getAuth(firebaseApp);
     try {
-      console.log(email, password, confirmPassword);
-      if (!isValid) {
+      if (!validateInput(email, password, confirmPassword)) {
         setErrorMessage(errMsg);
         return;
       }
@@ -31,9 +31,13 @@ const SignUp = ({ validateInput, isValid, errMsg }) => {
       window.location.reload();
       const userEmail = email;
       sessionStorage.setItem('userEmail', userEmail);
+      isValid2 = true;
     } catch (error) {
       setErrorMessage(getFirebaseErrorMessage(error));
+      isValid2 = false;
     }
+
+    console.log("Sign Up isValid? " + isValid2);
   };
 
   const getFirebaseErrorMessage = (error) => {
@@ -49,6 +53,8 @@ const SignUp = ({ validateInput, isValid, errMsg }) => {
         return "Invalid Login Credentials.\n please check your Email & Password";
       case "auth/missing-password":
         return "Missing Credentials: Please enter your Password";
+      case "auth/weak-password":
+        return "Password is too weak. Please use a Stronger Password."
       default:
         return "An error occurred. Please try again.";
     }

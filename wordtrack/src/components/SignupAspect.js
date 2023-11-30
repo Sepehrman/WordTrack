@@ -37,6 +37,9 @@ const SignupAspect = (WrappedComponent) => {
         errorMessage
       });
 
+      console.log("Sign Up (Aspect) is Valid? " + isValid);
+
+
       return isValid;
     };
 

@@ -17,7 +17,6 @@ function App() {
 
   useEffect(() => {
     setUserEmail(sessionStorage.getItem("userEmail"));
-    console.log("userEmail: ", userEmail);
   }, []);
 
   return (
