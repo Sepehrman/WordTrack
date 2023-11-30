@@ -1,3 +1,4 @@
+// Signup.js
 // SignUp component
 import React, { useState } from "react";
 import {
@@ -7,19 +8,21 @@ import {
 import { useNavigate } from "react-router-dom";
 import { firebaseApp } from "../firebase";
 import "./login.css";
+import SignupAspect from "./SignupAspect"; // Import the correct HOC name
 
-const SignUp = () => {
+const SignUp = ({ validateInput, isValid, errMsg }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState(""); // New state for confirm password
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState(null);
   const navigate = useNavigate();
 
   const handleSignUp = async () => {
     const auth = getAuth(firebaseApp);
     try {
-        console.log(validateEmailPassword(email, password, confirmPassword));
-      if (!validateEmailPassword(email, password, confirmPassword)) {
+      console.log(email, password, confirmPassword);
+      if (!isValid) {
+        setErrorMessage(errMsg);
         return;
       }
       await createUserWithEmailAndPassword(auth, email, password);
@@ -51,24 +54,6 @@ const SignUp = () => {
     }
   };
 
-  const validateEmailPassword = (email, password, confirmPassword) => {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/;
-
-    if (!emailRegex.test(email)) {
-      setErrorMessage("Invalid Email. Please enter a valid Email");
-      return false;
-    } else if (!passwordRegex.test(password)) {
-      setErrorMessage("Invalid Password. Password must contain at least 8 characters with one uppercase letter, one lowercase letter, and one digit.");
-      return false;
-    } else if (password !== confirmPassword) {
-      setErrorMessage("Passwords do not match. Please ensure both passwords are the same.");
-      return false;
-    }
-    
-    return true; // Return true if all validations pass
-  };
-
   return (
     <div className="authentication-container">
       <h2>Register to WordTrack</h2>
@@ -89,7 +74,7 @@ const SignUp = () => {
         />
         <input
           type="password"
-          placeholder="Confirm Password" // Confirm password input field
+          placeholder="Confirm Password"
           value={confirmPassword}
           onChange={(e) => setConfirmPassword(e.target.value)}
           data-cy="input-text-confirm-password"
@@ -97,11 +82,11 @@ const SignUp = () => {
         <button onClick={handleSignUp} data-cy="btn-signup">
           Signup
         </button>
-        <a href="/login" style={{ paddingLeft: "170px" }}>Have an Account?</a> {/* Applying padding inline */}
+        <a href="/login" style={{ paddingLeft: "170px" }}>Have an Account?</a>
       </div>
       {errorMessage && <p className="error-message">{errorMessage}</p>}
     </div>
   );
 };
 
-export default SignUp;
+export default SignupAspect(SignUp); // Use the correct HOC name when wrapping the component
