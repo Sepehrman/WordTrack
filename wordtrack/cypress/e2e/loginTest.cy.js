@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 describe('route test', () => {
   it('route exists', () => {
     cy.visit('/login').should("exist")

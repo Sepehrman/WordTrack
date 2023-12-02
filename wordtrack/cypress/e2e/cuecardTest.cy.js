@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 describe('Showcases cue card word info', () => {
   it('should exist', () => {
     cy.visit('/login')
@@ -6,7 +7,10 @@ describe('Showcases cue card word info', () => {
     cy.wait(500)
     cy.get('[data-cy="btn-login"]').click()
     cy.wait(500)
+    cy.url().should('equal', `${Cypress.config("baseUrl")}/`)
+
     cy.visit('/profile')
+    cy.wait(500)
     cy.get('[data-cy="cue-card-button-apple"]').click()
     cy.wait(500)
     cy.get('[data-cy="cue-card-def"]').should("exist")
