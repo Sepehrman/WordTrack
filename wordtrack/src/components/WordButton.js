@@ -26,7 +26,7 @@ const WordButton = ({ word, onDelete, onClick }) => {
 
     return (
         <div ref={drag} className="buttonContainer">
-            <button className="reviewWordButton" onClick={onClick}>
+            <button className="reviewWordButton" onClick={onClick}  data-cy={"cue-card-button-" + word}>
                 {word}
             </button>
             <button className="deleteWordButton" onClick={handleDelete}>X</button>

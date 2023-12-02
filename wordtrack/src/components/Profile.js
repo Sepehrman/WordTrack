@@ -89,9 +89,10 @@ const Profile = () => {
                   placeholder="New Category"
                   value={newCategory}
                   onChange={(e) => setNewCategory(e.target.value)}
+                  data-cy="profile-text-bar"
                   className="search-bar"
                 />
-                <button className="add-category-button" onClick={handleAddCategory}>
+                <button className="add-category-button" onClick={handleAddCategory} data-cy="category-button">
                   Add Category
                 </button>
               </div>
@@ -127,7 +128,7 @@ const Profile = () => {
           </div>
         </div>
         {showWordDef && (
-          <div className={`popup ${showWordDef ? 'open' : ''}`}>
+          <div className={`popup ${showWordDef ? 'open' : ''}`} data-cy="cue-card-def">
             <button className="close-button" onClick={handleCloseWordDef}>
               Close
             </button>
