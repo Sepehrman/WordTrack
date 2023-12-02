@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 describe('template spec', () => {
   it('should visit', () => {
     cy.visit('/').should("exist")
