@@ -1,24 +1,40 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from "react";
+import { BrowserRouter, Route, Routes } from "react-router-dom"; // Import Routes from react-router-dom
+import logo from "./logo.svg";
+
+import Navbar from "./components/Navbar";
+import Profile from "./components/Profile";
+import Login from './components/Login';
+import SignUp from './components/SignUp';
+import PrivateRoute from "./components/PrivateRoute";
+
+import Dashboard from './components/Dashboard';
 
 function App() {
+  const [userEmail, setUserEmail] = useState(
+    sessionStorage.getItem("userEmail")
+  );
+
+  useEffect(() => {
+    setUserEmail(sessionStorage.getItem("userEmail"));
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Navbar userEmail={userEmail} setUserEmail={setUserEmail} />
+      <Routes>
+        <Route path="/" element={<Dashboard userEmail={userEmail}/>} /> 
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<SignUp />} />
+
+        <Route path="/profile" element={
+          <PrivateRoute userEmail={userEmail}>
+          <Profile />
+        </PrivateRoute>
+        } />
+        
+      </Routes>
+    </BrowserRouter>
   );
 }
 
