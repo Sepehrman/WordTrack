@@ -1,0 +1,55 @@
+time per test case: 1.38s
+
+faliure rate: 5%
+
+total time for testing phase: 20hr
+
+average time to fix a single bug: 0.5hr
+
+
+
+(T× time per test)+(failure rate×time to fix a bug×T)= total time available for testing
+
+(T * 1.38s) + (0.05 * 1800s * T) = 72000s
+
+T = 787.9 or 788 test cases
+
+
+**************************************************
+
+Operational profles underline how users will use the software system. Reliability testing thus involves repeatedly testing the most probable use cases and inputs to expose issues such as buffer 
+overfow, memory leaks, etc., and then measuring failure intensity (i.e., MTBF), 
+etc., during this testing.
+
+Reliability testing on the other hand is a non-functional testing.
+
+reliability tests on the 
+other hand are to verify that the estimated duration of the error-free operation meets 
+the expectations. 
+
+It should be 
+noticed that these profles could be directly deduced from the use cases, requirements specifcations, and test cases developed in the life cycle chapter.
+
+
+Each run is the execution of a task with specifc 
+input values.
+
+These total numbers of tests then should be split proportional to the probabilities.
+
+Conventional approach to reliability testing that usually involves creating an operational profle and running it 
+several times to measure reliability metrics such as MTBF and MTTR.
+
+Once the probability estimates have been obtained, Espresso or UI Automation 
+could be repurposed for reliability testing.
+
+
+
+
+
+
+
+
+
+
+
+
