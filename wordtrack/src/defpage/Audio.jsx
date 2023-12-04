@@ -37,7 +37,7 @@ const Audio = ({ audioUrlSrc, pronunciationText }) => {
       <div id="audio-div" data-src-mp3={audioUrlSrc}></div>
       <audio id="audio"></audio>
       {/* <button onClick={playAudio}>{isPlaying ? 'Pause' : 'Play'}</button> */}
-      <button onClick={playAudio}>
+      <button data-cy="btn-definition-pronouce" onClick={playAudio}>
         <FontAwesomeIcon icon={faVolumeUp} />
       </button>
       {pronunciationText}

@@ -7,6 +7,9 @@ import Profile from "./components/Profile";
 import Login from './components/Login';
 import SignUp from './components/SignUp';
 import PrivateRoute from "./components/PrivateRoute";
+import ForgotPass from "./components/ForgotPass";
+import ResetMessage from "./components/ResetMessage";
+
 
 import Dashboard from './components/Dashboard';
 
@@ -17,7 +20,6 @@ function App() {
 
   useEffect(() => {
     setUserEmail(sessionStorage.getItem("userEmail"));
-    console.log("userEmail: ", userEmail);
   }, []);
 
   return (
@@ -27,7 +29,8 @@ function App() {
         <Route path="/" element={<Dashboard userEmail={userEmail}/>} /> 
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
-
+        <Route path="/forgotpass" element={<ForgotPass />} />
+        <Route path="/resetmessage" element={<ResetMessage />} />
         <Route path="/profile" element={
           <PrivateRoute userEmail={userEmail}>
           <Profile />

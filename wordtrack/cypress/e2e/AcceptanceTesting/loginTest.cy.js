@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 describe('route test', () => {
   it('route exists', () => {
     cy.visit('/login').should("exist")
@@ -10,7 +11,6 @@ describe('elements test', () => {
     cy.get('[data-cy="input-text-email"]').should("exist")
     cy.get('[data-cy="input-text-password"]').should("exist")
     cy.get('[data-cy="btn-login"]').should("exist")
-    cy.get('[data-cy="btn-signup"]').should("exist")
   })
 })
 

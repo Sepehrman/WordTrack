@@ -112,7 +112,7 @@ const Definition = ({ lookupWord }) => {
         <p>Error occurred: {error}</p>
       ) : (
         <div>
-          <h1>Definition: {definition.word}</h1>
+          <h1 data-cy="h1-def">Definition: {definition.word}</h1>
           <div className="scrollable-box">
             {definition.meanings
               ? definition.meanings.map((x, index) => (

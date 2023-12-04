@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
-import WordDef from './WordDef';
-import './FindDefinition.css';
-var words = require('an-array-of-english-words');
+import React, { useState } from "react";
+import WordDef from "./WordDef";
+import "./FindDefinition.css";
+var words = require("an-array-of-english-words");
 
 function FindDefinition() {
-  const [inputValue, setInputValue] = useState('');
-  const [lookupWord, setLookupWord] = useState('');
+  const [inputValue, setInputValue] = useState("");
+  const [lookupWord, setLookupWord] = useState("");
   const [autocompleteSuggestions, setAutocompleteSuggestions] = useState([]);
 
   const handleInputChange = (e) => {
@@ -28,9 +28,9 @@ function FindDefinition() {
   };
 
   const handleKeyDown = (e) => {
-    if (e.key === 'Enter') {
+    if (e.key === "Enter") {
       handleButtonClick();
-      document.getElementById('autocomplete-input').blur();
+      document.getElementById("autocomplete-input").blur();
     }
   };
 
@@ -46,20 +46,23 @@ function FindDefinition() {
           className="autocomplete-input"
           id="autocomplete-input"
           onKeyDown={handleKeyDown} // Handle Enter key press
+          data-cy="input-text-definition-search"
         />
         <datalist id="autocomplete-suggestions">
           {autocompleteSuggestions.map((suggestion, index) => (
             <option key={index} value={suggestion} />
           ))}
         </datalist>
-        <button onClick={handleButtonClick} className="search-button">
+        <button
+          onClick={handleButtonClick}
+          className="search-button"
+          data-cy="input-btn-definition-search"
+        >
           Lookup Definition
         </button>
       </div>
-      <div className="word-def-container">
-        {lookupWord && (
-          <WordDef lookupWord={lookupWord} />
-        )}
+      <div className="word-def-container" data-cy="definition-container">
+        {lookupWord && <WordDef lookupWord={lookupWord} />}
       </div>
     </div>
   );

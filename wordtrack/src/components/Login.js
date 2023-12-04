@@ -68,9 +68,9 @@ const Login = () => {
           Login
         </button>
         <a href="/signup" style={{ paddingLeft: "200px" }}>Signup</a> {/* Applying padding inline */}
+        <a href="/forgotpass" style={{ paddingLeft: "150px" }}>Forgot Password?</a> {/* Applying padding inline */}
       </div>
-      {errorMessage && <p className="error-message">{errorMessage}</p>}
-
+      {errorMessage && <p className="error-message" data-cy="txt-login-err">{errorMessage}</p>}
     </div>
   );
 };

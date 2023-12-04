@@ -79,7 +79,7 @@ const CategoryButton = ({ category, onDelete }) => {
   };
 
   return (
-    <div className="button-container">
+    <div className="button-container" data-cy={"category-" + category}>
       <div className="category-button" ref={drop}>
         {editing ? (
           <div className="category-button-edit">
@@ -107,7 +107,7 @@ const CategoryButton = ({ category, onDelete }) => {
       )}
       <div className="category-button-footer">
         <button className="edit-button" onClick={handleEdit}>Edit</button>
-        <button className="delete-button" onClick={() => onDelete(category)}>Delete</button>
+        <button className="delete-button" data-cy={"delete-category-button-" + category} onClick={() => onDelete(category)}>Delete</button>
       </div>
     </div>
   );

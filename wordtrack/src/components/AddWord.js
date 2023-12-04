@@ -56,9 +56,10 @@ function AddWordWithNote({ word }) {
           placeholder="Write your notes here..."
           rows="6"
           cols="50"
+          data-cy="definition-note-textarea"
         />
       </div>
-      <button style={styles.noteBtn} onClick={handleAddData}>Add Note</button>
+      <button style={styles.noteBtn} data-cy="btn-save-word" onClick={handleAddData}>Add Note</button>
     </div>
   );
 }
