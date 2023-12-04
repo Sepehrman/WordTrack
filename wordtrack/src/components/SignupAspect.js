@@ -37,6 +37,7 @@ const SignupAspect = (WrappedComponent) => {
         errorMessage
       });
 
+      console.log(errorMessage);
       console.log("Sign Up (Aspect) is Valid? " + isValid);
 
 
@@ -49,7 +50,7 @@ const SignupAspect = (WrappedComponent) => {
           {...this.props}
           validateInput={this.validateInput}
           isValid={this.state.isValid}
-          errorMessage={this.state.errorMessage}
+          errMsg={this.state.errorMessage}
         />
       );
     }
