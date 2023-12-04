@@ -17,8 +17,8 @@ const Note = () => {
         value={note}
         onChange={handleNoteChange}
         placeholder="Write your notes here..."
-        rows="6"
-        cols="50"
+        rows="2"
+        cols="40"
         data-cy="definition-note-textarea"
       />
     </div>

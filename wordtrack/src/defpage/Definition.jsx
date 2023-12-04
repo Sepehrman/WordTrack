@@ -105,7 +105,7 @@ const Definition = ({ lookupWord }) => {
   let idCounter = 1;
 
   return (
-    <div className="container">
+    <div className="worddef-container">
       {isLoading ? (
         <p>Loading...</p>
       ) : error ? (
@@ -128,14 +128,14 @@ const Definition = ({ lookupWord }) => {
                 ))
               : undefined}
           </div>
-          <div className="note">
+          <div>
             <h2>Note:</h2>
             {editingNote ? (
               <>
                 <textarea
                   value={note}
                   onChange={(e) => setNote(e.target.value)}
-                  rows="4"
+                  rows="2"
                 />
                 <button onClick={handleSaveNote}>Save Note</button>
               </>
