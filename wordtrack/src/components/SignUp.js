@@ -1,6 +1,6 @@
 // Signup.js
 // SignUp component
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   getAuth,
   createUserWithEmailAndPassword
@@ -17,12 +17,16 @@ const SignUp = ({ validateInput, isValid, errMsg }) => {
   const [errorMessage, setErrorMessage] = useState(null);
   const navigate = useNavigate();
 
+  // Triggers every time errMsg is changed
+  useEffect(() => {
+    setErrorMessage(errMsg);
+  }, [errMsg]);
+
   const handleSignUp = async () => {
     let isValid2 = false;
     const auth = getAuth(firebaseApp);
     try {
       if (!validateInput(email, password, confirmPassword)) {
-        setErrorMessage(errMsg);
         return;
       }
       await createUserWithEmailAndPassword(auth, email, password);
@@ -90,7 +94,7 @@ const SignUp = ({ validateInput, isValid, errMsg }) => {
         </button>
         <a href="/login" style={{ paddingLeft: "170px" }}>Have an Account?</a>
       </div>
-      {errorMessage && <p className="error-message">{errorMessage}</p>}
+      {(errorMessage || errorMessage == "") && <p className="error-message">{errorMessage}</p>}
     </div>
   );
 };
