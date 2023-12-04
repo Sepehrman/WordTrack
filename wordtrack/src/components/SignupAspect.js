@@ -24,6 +24,9 @@ const SignupAspect = (WrappedComponent) => {
       } else if (!password || !confirmPassword) {
         errorMessage = "Passwords should not be blank.";
         isValid = false;
+      } else if (password.length > 200) {
+        errorMessage = "Invalid Password. Password must be less than 200 characters or less.";
+        isValid = false;
       } else if (!passwordRegex.test(password)) {
         errorMessage = "Invalid Password. Password must contain at least 8 characters with one uppercase letter, one lowercase letter, and one digit.";
         isValid = false;
