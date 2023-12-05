@@ -613,7 +613,8 @@ describe("valid and non-matching password input and confirm password input signu
     cy.url().should("equal", `${Cypress.config("baseUrl")}/signup`);
   });
 });
-// 1
+
+// 2
 describe("valid and non-matching password input and confirm password input signup test: 2 valid & different inputs", () => {
   it("should show correct error message and not redirect to home", () => {
     cy.visit("/signup");
