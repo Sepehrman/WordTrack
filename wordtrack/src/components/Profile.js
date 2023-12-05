@@ -1,21 +1,25 @@
 import React, { useEffect, useState } from "react";
 import { database } from "../firebase";
 import { ref, onValue, remove, set } from "firebase/database";
-import { DndProvider, useDrag, useDrop } from 'react-dnd';
-import { HTML5Backend } from 'react-dnd-html5-backend';
-import Definition from '../defpage/Definition';
-import WordButton from './WordButton';
-import CategoryButton from './CategoryButton';
-import './Profile.css';
+import { DndProvider, useDrag, useDrop } from "react-dnd";
+import { HTML5Backend } from "react-dnd-html5-backend";
+import Definition from "../defpage/Definition";
+import WordButton from "./WordButton";
+import CategoryButton from "./CategoryButton";
+import "./Profile.css";
 
 const Profile = () => {
   const [categories, setCategories] = useState([]);
   const [reviewWords, setReviewWords] = useState([]);
+  const [allReviewWords, setAllReviewWords] = useState([]);
   const [selectedWord, setSelectedWord] = useState(null);
   const [newCategory, setNewCategory] = useState("");
   const [searchValue, setSearchValue] = useState("");
   const [showWordDef, setShowWordDef] = useState(false);
-  const userEmail = sessionStorage.getItem("userEmail")?.replace(/\./g, "_") || "";
+  const [savedWordsSearch, setSavedWordsSearch] = useState("");
+
+  const userEmail =
+    sessionStorage.getItem("userEmail")?.replace(/\./g, "_") || "";
 
   useEffect(() => {
     const userWordsRef = ref(database, `data/${userEmail}/words`);
@@ -26,6 +30,7 @@ const Profile = () => {
         const data = snapshot.val();
         const words = Object.keys(data);
         setReviewWords(words);
+        setAllReviewWords(words);
       } else {
         console.log("No user words found in the database.");
       }
@@ -40,7 +45,6 @@ const Profile = () => {
         console.log("No user categories found in the database.");
       }
     });
-
   }, [userEmail]);
 
   const handleChange = (search) => {
@@ -56,16 +60,34 @@ const Profile = () => {
     setShowWordDef(true);
   };
 
+  const filterSavedWords = (input) => {
+    setSavedWordsSearch(input);
+    if (input === "") {
+      console.log("Empty");
+      setReviewWords(allReviewWords);
+      return;
+    }
+    const regex = new RegExp(`${input.toLowerCase()}`);
+    const filteredAllReviewWords = allReviewWords.filter((word) => regex.test(word.toLowerCase()));
+    setReviewWords(filteredAllReviewWords);
+  }
+
   const handleAddCategory = () => {
     if (newCategory) {
-      const userCategoryRef = ref(database, `data/${userEmail}/categories/${newCategory}`);
+      const userCategoryRef = ref(
+        database,
+        `data/${userEmail}/categories/${newCategory}`
+      );
       set(userCategoryRef, true);
       setNewCategory("");
     }
   };
 
   const handleDeleteCategory = (category) => {
-    const userCategoryRef = ref(database, `data/${userEmail}/categories/${category}`);
+    const userCategoryRef = ref(
+      database,
+      `data/${userEmail}/categories/${category}`
+    );
     remove(userCategoryRef);
   };
 
@@ -83,20 +105,24 @@ const Profile = () => {
             <div className="categories">
               <h3 className="myProfileText">Categories</h3>
               <div className="add-category">
-              <div className="add-category-container">
-                <input
-                  type="text"
-                  placeholder="New Category"
-                  value={newCategory}
-                  onChange={(e) => setNewCategory(e.target.value)}
-                  data-cy="profile-text-bar"
-                  className="search-bar"
-                />
-                <button className="add-category-button" onClick={handleAddCategory} data-cy="category-button">
-                  Add Category
-                </button>
+                <div className="add-category-container">
+                  <input
+                    type="text"
+                    placeholder="New Category"
+                    value={newCategory}
+                    onChange={(e) => setNewCategory(e.target.value)}
+                    data-cy="profile-text-bar"
+                    className="search-bar"
+                  />
+                  <button
+                    className="add-category-button"
+                    onClick={handleAddCategory}
+                    data-cy="category-button"
+                  >
+                    Add Category
+                  </button>
+                </div>
               </div>
-            </div>
               <div className="categoriesCardContainer">
                 <div className="category-row">
                   {categories.map((category, index) => (
@@ -112,6 +138,13 @@ const Profile = () => {
           </div>
           <div className="colTwo">
             <h2>Saved Words</h2>
+            <input
+              type="text"
+              placeholder="Search"
+              value={savedWordsSearch}
+              onChange={(e) => filterSavedWords(e.target.value)}
+              className="saved-words-search-bar"
+            />
             <div className="reviewWordsContainer">
               {reviewWords.map((word, index) => (
                 <WordButton
@@ -128,7 +161,10 @@ const Profile = () => {
           </div>
         </div>
         {showWordDef && (
-          <div className={`popup ${showWordDef ? 'open' : ''}`} data-cy="cue-card-def">
+          <div
+            className={`popup ${showWordDef ? "open" : ""}`}
+            data-cy="cue-card-def"
+          >
             <button className="close-button" onClick={handleCloseWordDef}>
               Close
             </button>
