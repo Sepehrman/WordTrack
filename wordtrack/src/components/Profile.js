@@ -62,12 +62,11 @@ const Profile = () => {
 
   const filterSavedWords = (input) => {
     setSavedWordsSearch(input);
-    if (input === "") {
-      console.log("Empty");
+    if (input.trim() === "") {
       setReviewWords(allReviewWords);
       return;
     }
-    const regex = new RegExp(`${input.toLowerCase()}`);
+    const regex = new RegExp(`${input.toLowerCase().trim()}`);
     const filteredAllReviewWords = allReviewWords.filter((word) => regex.test(word.toLowerCase()));
     setReviewWords(filteredAllReviewWords);
   }
