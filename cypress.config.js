@@ -12,6 +12,6 @@ module.exports = defineConfig({
     setupNodeEvents(on, config) {
       // implement node event listeners here
     },
-    baseUrl: 'https://word-track-h14d.vercel.app/',
+    baseUrl: 'http://localhost:3000',
   },
 });
