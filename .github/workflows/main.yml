@@ -24,13 +24,10 @@ jobs:
           steps:
             - name: Checkout
               uses: actions/checkout@v4
-              with:
-                working-directory: ./worktrack
             # Install NPM dependencies, cache them correctly
             # and run all Cypress tests
             - name: Cypress run
               uses: cypress-io/github-action@v6
               with:
-                working-directory: ./worktrack
                 command: npx cypress run
                 browser: chrome
