@@ -24,7 +24,8 @@ jobs:
           steps:
             - name: Checkout
               uses: actions/checkout@v4
-              working-directory: ./worktrack
+              with:
+                working-directory: ./worktrack
             # Install NPM dependencies, cache them correctly
             # and run all Cypress tests
             - name: Cypress run
