@@ -4,24 +4,15 @@ on:
     branches-ignore:
       - main
 jobs:
-
   cypress-run:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Cypress install
-        uses: cypress-io/github-action@v6
-        with:
-          command: npm install cypress
-          browser: chrome
-
-      - name: Checkout
-        uses: actions/checkout@v4
-  
-      # Install NPM dependencies, cache them correctly
-      # and run all Cypress tests
-      - name: Cypress run
-        uses: cypress-io/github-action@v6
-        with:
-          command: npx cypress run
-          browser: chrome
-  
+          runs-on: ubuntu-latest
+          steps:
+            - name: Checkout
+              uses: actions/checkout@v4
+            # Install NPM dependencies, cache them correctly
+            # and run all Cypress tests
+            - name: Cypress run
+              uses: cypress-io/github-action@v6
+              with:
+                command: npx cypress run --config-file cypress.config.js
+                browser: chrome
