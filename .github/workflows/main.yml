@@ -29,5 +29,6 @@ jobs:
             - name: Cypress run
               uses: cypress-io/github-action@v6
               with:
-                command: npx cypress run --config-file cypress.config.js
+                working-directory: wordtrack
+                command: npx cypress run --config-file=cypress.config.js
                 browser: chrome
