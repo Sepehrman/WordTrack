@@ -15,7 +15,7 @@ module.exports = defineConfig({
 
       return config
     },
-    baseUrl: 'https://word-track-kkizv1p5z-sepehrmans-projects.vercel.app/',
+    baseUrl: 'http://localhost:3000',
     experimentalRunAllSpecs: true,
   },
 });
