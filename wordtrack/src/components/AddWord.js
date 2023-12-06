@@ -58,13 +58,13 @@ function AddWordWithNote({ word }) {
           style={styles.textarea}
           value={note}
           onChange={(e) => setNote(e.target.value)}
-          placeholder="Write your notes here..."
+          placeholder="Save a note with your word: ..."
           rows="2"
           cols="50"
           data-cy="definition-note-textarea"
         />
       </div>
-      <button style={styles.noteBtn} data-cy="btn-save-word" onClick={handleAddData}>Add Note</button>
+      <button style={styles.noteBtn} data-cy="btn-save-word" onClick={handleAddData}>Save Word</button>
       {showConfirmation && (
         <p style={styles.confirmation}>Note successfully added!</p>
       )}

@@ -5,33 +5,33 @@
     border: 1px solid #ccc;
     border-radius: 8px;
     padding: 20px;
-    max-height: 400px;
-    overflow-y: auto;
   }
   
   .word-list {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    max-height: 25vh;
+    max-width: 10vw;
+    overflow-y: auto;
+    overflow-x: auto;
   }
   
-  .word-list .word-button {
-    margin: 5px 0;
+  .word-list button {
+  
+    padding: 25px;
   }
   
   .close-modal {
     margin-top: 10px;
     padding: 10px 20px;
-    background-color: #ff0000;
-    color: #fff;
+    color:black;
     border: none;
     border-radius: 8px;
     cursor: pointer;
+    background-color: white;
   }
   
-  .close-modal:hover {
-    background-color: #cc0000;
-  }
   
   .cue-cards {
     position: fixed;
@@ -70,4 +70,12 @@
 
 .cue-card.blur {
   filter: none; /* Remove blur on click */
+}
+
+.button-set-category-dropdown{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 10px;
 }

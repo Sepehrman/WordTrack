@@ -40,7 +40,7 @@ const Audio = ({ audioUrlSrc, pronunciationText }) => {
       <button data-cy="btn-definition-pronouce" onClick={playAudio}>
         <FontAwesomeIcon icon={faVolumeUp} />
       </button>
-      {pronunciationText}
+      &nbsp;{pronunciationText}
     </div>
   );
 };

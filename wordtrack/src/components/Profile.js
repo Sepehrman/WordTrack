@@ -86,7 +86,7 @@ const Profile = () => {
               <div className="add-category-container">
                 <input
                   type="text"
-                  placeholder="New Category"
+                  placeholder="Add a New Category Here: ..."
                   value={newCategory}
                   onChange={(e) => setNewCategory(e.target.value)}
                   data-cy="profile-text-bar"

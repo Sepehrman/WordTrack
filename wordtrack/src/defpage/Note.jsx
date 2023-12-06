@@ -16,7 +16,7 @@ const Note = () => {
       <textarea
         value={note}
         onChange={handleNoteChange}
-        placeholder="Write your notes here..."
+        placeholder="Save a note with your word here: ..."
         rows="2"
         cols="40"
         data-cy="definition-note-textarea"

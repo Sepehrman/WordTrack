@@ -76,12 +76,14 @@ const CategoryModal = ({ category, onClose }) => {
           />
         ))}
       </div>
-      <button className="close-modal" onClick={onClose}>
-        Close
-      </button>
+      <div className='button-set-category-dropdown'>
       <button className="cue-cards-button" onClick={toggleCueCards}>
         Cue Cards
       </button>
+      <button className="close-modal" onClick={onClose}>
+        Close
+      </button>
+      </div>
       {showCueCards && (
         <div className="cue-cards">
           <button className="close-cue-cards" onClick={toggleCueCards}>
