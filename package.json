@@ -1,6 +1,0 @@
-{
-  "dependencies": {
-    "eslint": "^8.55.0",
-    "prop-types": "^15.8.1"
-  }
-}
