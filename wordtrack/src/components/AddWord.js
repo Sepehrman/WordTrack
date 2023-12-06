@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { ref, set } from 'firebase/database';
 import { database } from '../firebase';
+import PropTypes from 'prop-types';
 
 const styles = {
   container: {
@@ -71,5 +72,9 @@ function AddWordWithNote({ word }) {
     </div>
   );
 }
+
+AddWordWithNote.propTypes = {
+  word: PropTypes.string.isRequired,
+};
 
 export default AddWordWithNote;
