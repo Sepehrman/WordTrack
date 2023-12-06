@@ -24,6 +24,9 @@ jobs:
           steps:
             - name: Checkout
               uses: actions/checkout@v4
+                node-version: '16'
+                cache: 'node'
+                cache-dependency-path: wordtrack/package-lock.json
             # Install NPM dependencies, cache them correctly
             # and run all Cypress tests
             - name: Cypress run
