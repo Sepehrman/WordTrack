@@ -29,6 +29,6 @@ jobs:
             - name: Cypress run
               uses: cypress-io/github-action@v6
               with:
-                working-directory: /worktrack
+                working-directory: ./worktrack
                 command: npx cypress run
                 browser: chrome
