@@ -23,10 +23,6 @@ function FindDefinition() {
     setLookupWord(inputValue);
   };
 
-  const handleAddData = (word) => {
-    console.log(`Adding ${word} to the database...`);
-  };
-
   const handleKeyDown = (e) => {
     if (e.key === "Enter") {
       handleButtonClick();
@@ -61,7 +57,7 @@ function FindDefinition() {
           Lookup Definition
         </button>
       </div>
-      <div className="word-def-container" data-cy="definition-container">
+      <div data-cy="definition-container">
         {lookupWord && <WordDef lookupWord={lookupWord} />}
       </div>
     </div>

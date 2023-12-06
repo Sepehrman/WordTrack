@@ -4,7 +4,8 @@
     display: flex;
     flex-direction: column;
     gap: 20px; /* Add some vertical spacing between search bar and WordDef */
-    width: min(90vw, 700px);
+    max-width: 100vw;
+    max-height: 10vh;
   }
   
   .search-bar {
@@ -23,6 +24,7 @@
     border-radius: 5px;
     outline: none; /* Remove the input's outline */
     flex: 1;
+    min-width: 20vw;
   }
   
   .search-bar button {
@@ -40,12 +42,6 @@
     background-color: #0056b3;
   }
   
-  .word-def-container {
-    width: 100%;
-    background-color: #fff;
-    border-radius: 4px;
-    align-content: center;
-  }
 
   
   

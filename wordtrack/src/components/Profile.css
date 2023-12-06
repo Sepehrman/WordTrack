@@ -113,9 +113,11 @@
   
   .search-bar {
     padding: 10px;
-    /* You can adjust other styles as needed */
+    min-width: 30vw;
+    border-radius: 10px;
+    margin:10px;
   }
   
   .add-category-button {
-    /* Add styling for the button if needed */
+   
   }

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { ref, set } from 'firebase/database';
 import { database } from '../firebase';
+import PropTypes from 'prop-types';
 
 const styles = {
   container: {
@@ -17,12 +18,16 @@ const styles = {
   },
   noteBtn: {
     marginTop: "20px",
+    marginLeft: "auto",
+    marginRight: "auto",
+    display: "block",
   },
 }
 
 function AddWordWithNote({ word }) {
   const [note, setNote] = useState('');
   const userEmail = sessionStorage.getItem('userEmail');
+  const [showConfirmation, setShowConfirmation] = useState(false);
 
   // Handles adding the note to the specific word in the database
   const handleAddData = () => {
@@ -35,6 +40,7 @@ function AddWordWithNote({ word }) {
       set(dataRef, jsonData)
         .then(() => {
           console.log('Note added to the database for word: ' + word);
+          setShowConfirmation(true);
           setNote('');
         })
         .catch((error) => {
@@ -47,21 +53,28 @@ function AddWordWithNote({ word }) {
 
   return (
     <div style={styles.container}>
-      <h2>Add note to a word in the database</h2>
+     <h2>Add a Note:</h2>
       <div styles={styles.textareaContainer}>
         <textarea
           style={styles.textarea}
           value={note}
           onChange={(e) => setNote(e.target.value)}
-          placeholder="Write your notes here..."
-          rows="6"
+          placeholder="Save a note with your word: ..."
+          rows="2"
           cols="50"
           data-cy="definition-note-textarea"
         />
       </div>
-      <button style={styles.noteBtn} data-cy="btn-save-word" onClick={handleAddData}>Add Note</button>
+      <button style={styles.noteBtn} data-cy="btn-save-word" onClick={handleAddData}>Save Word</button>
+      {showConfirmation && (
+        <p style={styles.confirmation}>Note successfully added!</p>
+      )}
     </div>
   );
 }
+
+AddWordWithNote.propTypes = {
+  word: PropTypes.string.isRequired,
+};
 
 export default AddWordWithNote;

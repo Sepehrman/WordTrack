@@ -65,7 +65,7 @@ const WordDef = ({ lookupWord}) => {
   let idCounter = 1;
 
   return (
-    <div className="container">
+    <div className="worddef-container">
       {isLoading ? (
         <p>Loading...</p>
       ) : error ? (
