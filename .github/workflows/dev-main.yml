@@ -28,7 +28,7 @@ jobs:
         # Install NPM dependencies, cache them correctly
         # and run all Cypress tests
       - name: Build npm
-        uses: ./
+        uses: actions/checkout@v4
         with:
           working-directory: wordtrack
           build: npm run build
