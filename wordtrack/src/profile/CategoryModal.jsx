@@ -89,16 +89,21 @@ const CategoryModal = ({ category, onClose }) => {
       </div>
       {showCueCards && (
         <div className="cue-cards">
+          <div className="cue-card-top-buttons">
           <button className="close-cue-cards" onClick={toggleCueCards}>
-            Close Cue Cards
+            Close 
           </button>
-          <button onClick={() => navigateCueCards(-1)}>Previous</button>
-          <button onClick={() => navigateCueCards(1)}>Next</button>
-
+          <button onClick={toggleCueCardBlur}>
+           Toggle Blur
+          </button>
+          </div>
           <h2> Word : {words[currentCueCardIndex]}</h2>
-
-          <div className={"cue-card " + (isCueCardBlurred ? "blur" : "")} onClick={toggleCueCardBlur}>
+          <div className={"cue-card " + (isCueCardBlurred ? "blur" : "")}>
           {definitionComponents[currentCueCardIndex]}
+        </div>
+        <div className="cue-card-buttons-footer">
+        <button onClick={() => navigateCueCards(-1)}>Previous</button>
+        <button onClick={() => navigateCueCards(1)}>Next</button>
         </div>
         </div>
       )}
