@@ -42,7 +42,10 @@
     background-color: white;
   }
   
-  
+  .cue-cards-div{
+
+  }
+
   .cue-cards {
     position: fixed;
     top: 50%;
@@ -52,9 +55,11 @@
     border: 1px solid #ccc;
     border-radius: 8px;
     padding: 20px;
-    max-width: 60vw;
-    overflow: hidden;
+    max-width: 80vw;
+    min-width:60vw;
+    height: 60vh;
     z-index: 999; /* Ensure it's on top of other content */
+    overflow-y: auto;
   }
 
   .close-cue-cards{

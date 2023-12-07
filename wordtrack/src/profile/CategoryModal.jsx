@@ -87,6 +87,7 @@ const CategoryModal = ({ category, onClose }) => {
         Close
       </button>
       </div>
+      <div className='cue-cards-div'>
       {showCueCards && (
         <div className="cue-cards">
           <div className="cue-card-top-buttons">
@@ -107,6 +108,7 @@ const CategoryModal = ({ category, onClose }) => {
         </div>
         </div>
       )}
+      </div>
     </div>
   );
 };
