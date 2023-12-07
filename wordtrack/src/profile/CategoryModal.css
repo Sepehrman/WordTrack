@@ -1,21 +1,33 @@
 /* CategoryModal.css */
 
 .category-modal {
-    background-color: #fff;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    padding: 20px;
-  }
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 20px;
+  z-index: 999; /* Ensure it's on top of other content */
+  max-width: 60vw;
+  max-height: 80vh;
+  text-align: center;
+  text-transform: capitalize;
+
+
+  /* Inner gray border */
+  box-shadow: 0 0 0 8px gray, 0 0 0 10px black;
+}
   
-  .word-list {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    max-height: 25vh;
-    max-width: 10vw;
-    overflow-y: auto;
-    overflow-x: auto;
-  }
+.word-list {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(5vw, 1fr));
+  grid-gap: 10%;
+  max-height: 40vh;
+  overflow-y: auto;
+  min-width: 35vw;
+  align-items: center;
+}
   
   .word-list button {
   
@@ -79,3 +91,9 @@
   align-items: center;
   margin: 10px;
 }
+
+.body-blurred {
+  filter: blur(4px);
+  pointer-events: none; /* Allow clicks on the modal while blurred */
+}
+

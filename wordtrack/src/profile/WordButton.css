@@ -17,6 +17,7 @@
     margin-top: 10px;
     margin-bottom: 10px;
     text-transform: capitalize;
+    min-width: 6vw;
   }
   
   /* Styles for the delete button */

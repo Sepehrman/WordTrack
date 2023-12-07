@@ -67,6 +67,7 @@ const CategoryModal = ({ category, onClose }) => {
 
   return (
     <div className="category-modal">
+      <h2>{category}</h2>
       <div className="word-list">
         {words.map((word, index) => (
           <WordButtonCategory
