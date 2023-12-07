@@ -3,9 +3,8 @@ import React, { useState, useEffect } from "react";
 import { useApi } from "../hooks/useAPI";
 import { useFirebase } from "../hooks/useFirebase";
 import SingleWordMeaning from "./SingleWordMeaning";
-import Audio from "../common/Audio"; 
+import Audio from "../common/Audio";
 import NoteSection from "./EditNote";
-
 
 const WordDefinition = ({ lookupWord }) => {
   if (typeof lookupWord !== "string" || lookupWord === "") {
@@ -17,7 +16,8 @@ const WordDefinition = ({ lookupWord }) => {
   }
 
   const [word, setWord] = useState(lookupWord);
-  const userEmail = sessionStorage.getItem("userEmail")?.replace(/\./g, "_") || "";
+  const userEmail =
+    sessionStorage.getItem("userEmail")?.replace(/\./g, "_") || "";
 
   const { data: definition, isLoading, error } = useApi(
     `https://api.dictionaryapi.dev/api/v2/entries/en/${word}`
@@ -27,6 +27,7 @@ const WordDefinition = ({ lookupWord }) => {
     note,
     setNote,
     editingNote,
+    setEditingNote, 
     handleSaveNote,
     handleGetNote,
   } = useFirebase(userEmail, lookupWord);
@@ -49,7 +50,6 @@ const WordDefinition = ({ lookupWord }) => {
               definition.meanings.map((meaningEntry, index) => (
                 <React.Fragment key={index + 1}>
                   <div>
-                    {/* Assuming Audio and SingleWordMeaning are atoms */}
                     <Audio
                       audioUrlSrc={definition.phonetics[index]?.audio}
                       pronunciationText={definition.phonetics[index]?.text}
@@ -65,7 +65,7 @@ const WordDefinition = ({ lookupWord }) => {
               editingNote={editingNote}
               setNote={setNote}
               handleSaveNote={handleSaveNote}
-              handleEditNote={handleGetNote}
+              handleEditNote={() => setEditingNote(true)}
             />
           </div>
         </div>

@@ -106,6 +106,6 @@
 
 .cue-card-top-buttons{
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
 }
 

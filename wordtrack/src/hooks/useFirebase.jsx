@@ -7,6 +7,7 @@ export const useFirebase = (userEmail, lookupWord) => {
   const [note, setNote] = useState("");
   const [editingNote, setEditingNote] = useState(false);
 
+  // Define handleGetNote here
   const handleGetNote = async () => {
     if (userEmail) {
       const noteRef = ref(database, `data/${userEmail}/words/${lookupWord}/note`);
@@ -25,7 +26,7 @@ export const useFirebase = (userEmail, lookupWord) => {
   };
 
   useEffect(() => {
-    handleGetNote();
+    handleGetNote(); // Now it's defined and can be used here
   }, [userEmail, lookupWord]);
 
   const handleSaveNote = () => {
@@ -40,5 +41,5 @@ export const useFirebase = (userEmail, lookupWord) => {
     }
   };
 
-  return { note, setNote, editingNote, handleSaveNote, handleGetNote };
+  return { note, setNote, editingNote, setEditingNote, handleSaveNote, handleGetNote };
 };
