@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import WordDef from "./WordDef";
 import "./FindDefinition.css";
 var words = require("an-array-of-english-words");
@@ -7,6 +7,13 @@ function FindDefinition() {
   const [inputValue, setInputValue] = useState("");
   const [lookupWord, setLookupWord] = useState("");
   const [autocompleteSuggestions, setAutocompleteSuggestions] = useState([]);
+
+  const definitionEnd = useRef(null)
+
+  const scrollToBottom = () => {
+    definitionEnd.current?.scrollIntoView({ behavior: "smooth" })
+  }
+
 
   const handleInputChange = (e) => {
     const value = e.target.value;
@@ -21,6 +28,9 @@ function FindDefinition() {
 
   const handleButtonClick = () => {
     setLookupWord(inputValue);
+    setTimeout(() => {
+      scrollToBottom();
+    }, 300);
   };
 
   const handleKeyDown = (e) => {
@@ -63,7 +73,9 @@ function FindDefinition() {
       <div data-cy="definition-container">
         {lookupWord && <WordDef lookupWord={lookupWord} />}
       </div>
+      <div ref={definitionEnd} />
     </div>
+    
   );
 }
 
