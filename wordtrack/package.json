@@ -30,12 +30,6 @@
     "test": "react-scripts -r @cypress/instrument-cra start",
     "eject": "react-scripts eject"
   },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
   "browserslist": {
     "production": [
       ">0.2%",
@@ -50,8 +44,6 @@
   },
   "devDependencies": {
     "@4tw/cypress-drag-drop": "^2.2.5",
-    "cypress": "^13.6.1",
-    "eslint": "^8.55.0",
-    "eslint-plugin-react": "^7.33.2"
+    "cypress": "^13.6.1"
   }
 }
