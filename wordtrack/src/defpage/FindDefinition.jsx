@@ -44,11 +44,14 @@ function FindDefinition() {
           onKeyDown={handleKeyDown} // Handle Enter key press
           data-cy="input-text-definition-search"
         />
-        <datalist id="autocomplete-suggestions">
-          {autocompleteSuggestions.map((suggestion, index) => (
-            <option key={index} value={suggestion} />
-          ))}
-        </datalist>
+        {
+          inputValue === "" ?
+          <datalist id="autocomplete-suggestions">
+            {autocompleteSuggestions.map((suggestion, index) => (
+              <option key={index} value={suggestion} />
+            ))}
+          </datalist> : undefined
+        }
         <button
           onClick={handleButtonClick}
           className="search-button"
