@@ -3,8 +3,8 @@ import { database } from "../firebase";
 import { ref, onValue, remove, set } from "firebase/database";
 import { DndProvider, useDrag, useDrop } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
-import Definition from "../defpage/Definition";
-import WordButton from "./WordButton";
+import Definition from "../dictionary/Definition";
+import WordButton from "../components/WordButton";
 import CategoryButton from "./CategoryButton";
 import "./Profile.css";
 

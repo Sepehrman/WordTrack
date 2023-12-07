@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import SingleWordMeaning from "./SingleWordMeaning";
-import Audio from "./Audio";
+import Audio from "../common/Audio";
 import { ref, get, set } from "firebase/database";
 import { database } from "../firebase";
 import "./WordDef.css"; // Import the CSS file
