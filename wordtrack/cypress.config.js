@@ -16,7 +16,7 @@ module.exports = defineConfig({
 
       //return config
     },
-    baseUrl: 'https://word-track-seven.vercel.app',
+    baseUrl: 'http://localhost:3000',
     experimentalRunAllSpecs: true,
     numTestsKeptInMemory: 1,
   },
