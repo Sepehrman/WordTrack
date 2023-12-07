@@ -8,7 +8,7 @@ import Login from './auth/Login';
 import SignUp from './auth/SignUp';
 import PrivateRoute from "./auth/PrivateRoute";
 import ForgotPass from "./auth/ForgotPass";
-import ResetMessage from "./components/ResetMessage";
+import ResetMessage from "./auth/ResetMessage";
 
 
 import Dashboard from './landing/Dashboard';

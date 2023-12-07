@@ -14,7 +14,6 @@ const Profile = () => {
   const [allReviewWords, setAllReviewWords] = useState([]);
   const [selectedWord, setSelectedWord] = useState(null);
   const [newCategory, setNewCategory] = useState("");
-  const [searchValue, setSearchValue] = useState("");
   const [showWordDef, setShowWordDef] = useState(false);
   const [savedWordsSearch, setSavedWordsSearch] = useState("");
 
@@ -47,10 +46,6 @@ const Profile = () => {
     });
   }, [userEmail]);
 
-  const handleChange = (search) => {
-    setSearchValue(search);
-    // Filter through choices
-  };
 
   const handleCloseWordDef = () => {
     setShowWordDef(false);
