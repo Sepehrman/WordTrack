@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { ref, set } from 'firebase/database';
 import { database } from '../firebase';
 import PropTypes from 'prop-types';
+import { useNavigate } from 'react-router-dom';
 
 const styles = {
   container: {
@@ -28,10 +29,17 @@ function AddWordWithNote({ word }) {
   const [note, setNote] = useState('');
   const userEmail = sessionStorage.getItem('userEmail');
   const [showConfirmation, setShowConfirmation] = useState(false);
+  const navigate = useNavigate(); 
 
   // Handles adding the note to the specific word in the database
   const handleAddData = () => {
+    if (!userEmail) {
+      // Redirect to the login page if userEmail is null
+      navigate('/login');
+      return;
+    }
     if (userEmail) {
+      
       const dataRef = ref(database, `data/${userEmail.replace('.', '_')}/words/${word}`);
       const jsonData = {
         note: note,

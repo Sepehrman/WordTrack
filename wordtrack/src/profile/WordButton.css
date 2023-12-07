@@ -7,13 +7,15 @@
   
   /* Styles for the review word button */
   .reviewWordButton {
-    padding: 25px; /* Adjust the padding to your preference */
+    padding: 20px; /* Adjust the padding to your preference */
     color: white; /* Text color for the button */
     border: none; /* Remove button border */
     cursor: pointer;
     display: flex; /* Use flex layout */
     align-items: center; /* Center vertically */
     justify-content: center; /* Center horizontally */
+    margin: 10px;
+    text-transform: capitalize;
   }
   
   /* Styles for the delete button */
@@ -21,7 +23,7 @@
     background-color: transparent;
     /* Adjust the padding to your preference */
     color: red; /* Text color for the delete button */
-    border: none; /* Remove button border */
     cursor: pointer;
+    margin-left: 0;
   }
   
