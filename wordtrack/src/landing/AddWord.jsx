@@ -75,7 +75,7 @@ function AddWordWithNote({ word }) {
       </div>
       <button style={styles.noteBtn} data-cy="btn-save-word" onClick={handleAddData}>Save Word</button>
       {showConfirmation && (
-        <p style={styles.confirmation}>Note successfully added!</p>
+        <p style={styles.confirmation}>Word successfully added!</p>
       )}
     </div>
   );

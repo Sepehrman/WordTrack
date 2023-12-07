@@ -90,7 +90,7 @@ const WordDef = ({ lookupWord}) => {
                 ))
               : undefined}
           </div>
-          <div className="footer">
+          <div className="worddef-footer">
             <AddWordWithNote word={word} />
           </div>
         </div>

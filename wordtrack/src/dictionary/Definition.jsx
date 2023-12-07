@@ -5,6 +5,7 @@ import { ref, get, set } from "firebase/database";
 import { database } from "../firebase";
 import NoteSection from "./EditNote";
 import "./WordDef.css";
+import WordDef from "./WordDef";
 
 const WordDefinition = ({ lookupWord }) => {
   if (typeof lookupWord !== "string" || lookupWord === "") {
@@ -112,6 +113,7 @@ const WordDefinition = ({ lookupWord }) => {
                 </React.Fragment>
               ))}
           </div>
+          <div className="worddef-footer">
           <NoteSection
             note={note}
             editingNote={editingNote}
@@ -119,6 +121,7 @@ const WordDefinition = ({ lookupWord }) => {
             handleSaveNote={handleSaveNote}
             handleEditNote={handleEditNote}
           />
+        </div>
         </div>
       )}
     </div>
