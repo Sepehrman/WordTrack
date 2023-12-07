@@ -1,6 +1,8 @@
 import React from 'react';
 import { ref, remove } from 'firebase/database';
-import { database } from '../firebase';
+// import { database } from '../firebase';
+import { FirebaseService } from "../firebase";
+
 import { useDrag } from 'react-dnd';
 import "./WordButton.css";
 
@@ -14,7 +16,7 @@ const WordButton = ({ word, onDelete, onClick }) => {
     });
 
     const handleDelete = () => {
-        const userWordsRef = ref(database, `data/${userEmail}/words/${word}`);
+        const userWordsRef = ref(FirebaseService.getInstance().database, `data/${userEmail}/words/${word}`);
         remove(userWordsRef)
             .then(() => {
                 onDelete(word); // Notify the parent component to update the state

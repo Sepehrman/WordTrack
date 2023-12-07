@@ -15,8 +15,25 @@ const firebaseConfig = {
   appId: "1:263668820876:web:41bc82c28798ac780a84a9"
 };
 
-// Initialize Firebase
-const firebaseApp = initializeApp(firebaseConfig);
-const database = getDatabase(firebaseApp);
+export class FirebaseService {
+  static instance;
 
-export {firebaseApp, database};
+  // Initialize Firebase
+  static firebaseApp = initializeApp(firebaseConfig);
+  static database = getDatabase(FirebaseService.firebaseApp);
+  
+  static getInstance() {
+    if (!FirebaseService.instance) {
+      FirebaseService.instance = new FirebaseService()
+    }
+  
+    return FirebaseService.instance
+  }
+}
+
+
+// // Initialize Firebase
+// const firebaseApp = initializeApp(firebaseConfig);
+// const database = getDatabase(firebaseApp);
+
+// export {firebaseApp, database};

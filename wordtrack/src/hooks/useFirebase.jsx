@@ -1,7 +1,8 @@
 // utils/hooks/useFirebase.js
 import { useState, useEffect } from "react";
 import { ref, get, set } from "firebase/database";
-import { database } from "../firebase";
+// import { database } from "../firebase";
+import { FirebaseService } from "../firebase";
 
 export const useFirebase = (userEmail, lookupWord) => {
   const [note, setNote] = useState("");
@@ -9,7 +10,7 @@ export const useFirebase = (userEmail, lookupWord) => {
 
   const handleGetNote = async () => {
     if (userEmail) {
-      const noteRef = ref(database, `data/${userEmail}/words/${lookupWord}/note`);
+      const noteRef = ref(FirebaseService.getInstance().database, `data/${userEmail}/words/${lookupWord}/note`);
       try {
         const snapshot = await get(noteRef);
         if (snapshot.exists()) {
@@ -30,7 +31,7 @@ export const useFirebase = (userEmail, lookupWord) => {
 
   const handleSaveNote = () => {
     if (userEmail) {
-      const noteRef = ref(database, `data/${userEmail}/words/${lookupWord}/note`);
+      const noteRef = ref(FirebaseService.getInstance().database, `data/${userEmail}/words/${lookupWord}/note`);
       set(noteRef, note)
         .then(() => setEditingNote(false))
         .catch((error) => {

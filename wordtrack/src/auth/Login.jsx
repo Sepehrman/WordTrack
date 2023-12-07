@@ -5,7 +5,7 @@ import {
   signInWithEmailAndPassword
 } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
-import { firebaseApp } from "../firebase";
+import {FirebaseService} from "../firebase";
 import "./login.css";
 
 const Login = () => {
@@ -15,7 +15,7 @@ const Login = () => {
   const navigate = useNavigate();
 
   const handleLogin = async () => {
-    const auth = getAuth(firebaseApp);
+    const auth = getAuth(FirebaseService.getInstance().firebaseApp);
     try {
       await signInWithEmailAndPassword(auth, email, password);
       setErrorMessage(null);

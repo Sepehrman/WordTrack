@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { ref, set, get, remove } from 'firebase/database';
-import { database } from '../firebase';
+// import { database } from '../firebase';
+import { FirebaseService } from "../firebase";
 import { useDrag, useDrop } from 'react-dnd';
 import CategoryModal from './CategoryModal'; // Import your CategoryModal component
 import "./CategoryButton.css";
@@ -18,7 +19,7 @@ const CategoryButton = ({ category, onDelete }) => {
     accept: 'WORD', // Accept only items of type 'WORD'
     // Handle the drop action here
     drop: async (item) => {
-      const userCategoryRef = ref(database, `data/${userEmail.replace('.', '_')}/categories/${category}/`);
+      const userCategoryRef = ref(FirebaseService.getInstance().database, `data/${userEmail.replace('.', '_')}/categories/${category}/`);
 
       try {
         // Fetch the existing words in the category
@@ -47,8 +48,8 @@ const CategoryButton = ({ category, onDelete }) => {
 
   const handleUpdate = async () => {
     try {
-      const userCategoryRef = ref(database, `data/${userEmail}/categories/${category}`);
-      const updatedUserCategoryRef = ref(database, `data/${userEmail}/categories/${updatedCategory}`);
+      const userCategoryRef = ref(FirebaseService.getInstance().database, `data/${userEmail}/categories/${category}`);
+      const updatedUserCategoryRef = ref(FirebaseService.getInstance().database, `data/${userEmail}/categories/${updatedCategory}`);
   
       // Get the data from the old reference
       const categorySnapshot = await get(userCategoryRef);

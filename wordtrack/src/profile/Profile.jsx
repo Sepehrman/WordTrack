@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { database } from "../firebase";
+import { FirebaseService } from "../firebase";
+// import { database } from "../firebase";
 import { ref, onValue, remove, set, get } from "firebase/database";
 import { DndProvider, useDrag, useDrop } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
@@ -21,8 +22,8 @@ const Profile = () => {
     sessionStorage.getItem("userEmail")?.replace(/\./g, "_") || "";
 
   useEffect(() => {
-    const userWordsRef = ref(database, `data/${userEmail}/words`);
-    const userCategoryRef = ref(database, `data/${userEmail}/categories`);
+    const userWordsRef = ref(FirebaseService.getInstance().database, `data/${userEmail}/words`);
+    const userCategoryRef = ref(FirebaseService.getInstance().database, `data/${userEmail}/categories`);
 
     onValue(userWordsRef, (snapshot) => {
       if (snapshot.exists()) {
@@ -69,7 +70,7 @@ const Profile = () => {
   const handleAddCategory = async () => {
     if (newCategory) {
       const userCategoryRef = ref(
-        database,
+        Firebase.getInstance().database,
         `data/${userEmail}/categories/${newCategory}`
       );
   
@@ -91,7 +92,7 @@ const Profile = () => {
   
 const handleDeleteCategory = async (categoryToDelete) => {
   const userCategoryRef = ref(
-    database,
+    Firebase.getInstance().database,
     `data/${userEmail}/categories/${categoryToDelete}`
   );
 
@@ -113,7 +114,7 @@ const handleDeleteCategory = async (categoryToDelete) => {
 
 // Add a function to fetch categories
 const fetchCategories = async () => {
-  const userCategoryRef = ref(database, `data/${userEmail}/categories`);
+  const userCategoryRef = ref(Firebase.getInstance().database, `data/${userEmail}/categories`);
   const snapshot = await get(userCategoryRef);
 
   if (snapshot.exists()) {
@@ -128,7 +129,7 @@ const fetchCategories = async () => {
   
   
 const handleDeleteWord = async (wordToDelete) => {
-  const userWordRef = ref(database, `data/${userEmail}/${wordToDelete}`);
+  const userWordRef = ref(Firebase.getInstance().database, `data/${userEmail}/${wordToDelete}`);
 
   try {
     await remove(userWordRef);

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import WordButtonCategory from './WordButtonCategory';
-import { database } from '../firebase';
+// import { database } from '../firebase';
+import { FirebaseService } from "../firebase";
 import { ref, onValue, off, remove, child } from 'firebase/database';
 import './CategoryModal.css';
 import Definition from '../dictionary/Definition';
@@ -17,7 +18,7 @@ const CategoryModal = ({ category, onClose }) => {
   };
 
   const handleDeleteWord = (category, word) => {
-    const userCategoryRef = ref(database, `data/${userEmail}/categories/${category}`);
+    const userCategoryRef = ref(FirebaseService.getInstance().database, `data/${userEmail}/categories/${category}`);
     remove(child(userCategoryRef, word))
       .then(() => {
         console.log('Deleted word from category');
@@ -28,7 +29,7 @@ const CategoryModal = ({ category, onClose }) => {
   };
 
   useEffect(() => {
-    const categoryRef = ref(database, `data/${userEmail}/categories/${category}`);
+    const categoryRef = ref(FirebaseService.getInstance().database, `data/${userEmail}/categories/${category}`);
     onValue(categoryRef, (snapshot) => {
       if (snapshot.exists()) {
         const data = snapshot.val();

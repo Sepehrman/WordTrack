@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { ref, onValue } from 'firebase/database';
-import { database } from '../firebase';
+import { FirebaseService } from "../firebase";
+// import { database } from '../firebase';
 
 function ListView() {
   const [data, setData] = useState([]);
-  const dataListRef = ref(database, 'data'); // Replace with your database location
+  const dataListRef = ref(FirebaseService.getInstance().database, 'data'); // Replace with your database location
 
   useEffect(() => {
     const dataListener = onValue(dataListRef, (snapshot) => {

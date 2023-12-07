@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { ref, set } from 'firebase/database';
-import { database } from '../firebase';
+// import { database } from '../firebase';
+import { FirebaseService } from "../firebase";
 import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
 
@@ -40,7 +41,7 @@ function AddWordWithNote({ word }) {
     }
     if (userEmail) {
       
-      const dataRef = ref(database, `data/${userEmail.replace('.', '_')}/words/${word}`);
+      const dataRef = ref(FirebaseService.getInstance().database, `data/${userEmail.replace('.', '_')}/words/${word}`);
       const jsonData = {
         note: note,
       };
