@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import SingleWordMeaning from "./SingleWordMeaning";
-import Audio from "../defpage/Audio";
-import AddWordWithNote from "../components/AddWord";
+import Audio from "../common/Audio";
+import AddWordWithNote from "../landing/AddWord";
 import "./WordDef.css"; // Import the CSS file
 
 const WordDef = ({ lookupWord}) => {
