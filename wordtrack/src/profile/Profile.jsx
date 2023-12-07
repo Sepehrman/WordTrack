@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { database } from "../firebase";
-import { ref, onValue, remove, set } from "firebase/database";
+import { ref, onValue, remove, set, get } from "firebase/database";
 import { DndProvider, useDrag, useDrop } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import Definition from "../dictionary/Definition";
@@ -71,29 +71,83 @@ const Profile = () => {
     setReviewWords(filteredAllReviewWords);
   }
 
-  const handleAddCategory = () => {
+  const handleAddCategory = async () => {
     if (newCategory) {
       const userCategoryRef = ref(
         database,
         `data/${userEmail}/categories/${newCategory}`
       );
-      set(userCategoryRef, true);
-      setNewCategory("");
+  
+      try {
+        await set(userCategoryRef, true);
+        setNewCategory("");
+  
+        // Update state after successful addition
+        setCategories((prevCategories) =>
+          prevCategories.includes(newCategory)
+            ? prevCategories
+            : [...prevCategories, newCategory]
+        );
+      } catch (error) {
+        console.error("Error adding category:", error);
+      }
     }
   };
+  
+const handleDeleteCategory = async (categoryToDelete) => {
+  const userCategoryRef = ref(
+    database,
+    `data/${userEmail}/categories/${categoryToDelete}`
+  );
 
-  const handleDeleteCategory = (category) => {
-    const userCategoryRef = ref(
-      database,
-      `data/${userEmail}/categories/${category}`
+  try {
+    await remove(userCategoryRef);
+
+    // Update state after successful deletion
+    setCategories((prevCategories) =>
+      prevCategories.filter((category) => category !== categoryToDelete)
     );
-    remove(userCategoryRef);
-  };
 
-  const handleDeleteWord = (word) => {
-    const userWordRef = ref(database, `data/${userEmail}/${word}`);
-    remove(userWordRef);
-  };
+    // Trigger a refresh by re-fetching the categories
+    const refreshedCategories = await fetchCategories();
+    setCategories(refreshedCategories);
+  } catch (error) {
+    console.error("Error deleting category:", error);
+  }
+};
+
+// Add a function to fetch categories
+const fetchCategories = async () => {
+  const userCategoryRef = ref(database, `data/${userEmail}/categories`);
+  const snapshot = await get(userCategoryRef);
+
+  if (snapshot.exists()) {
+    const data = snapshot.val();
+    const categories = Object.keys(data);
+    return categories;
+  } else {
+    console.log("No user categories found in the database.");
+    return [];
+  }
+};
+  
+  
+const handleDeleteWord = async (wordToDelete) => {
+  const userWordRef = ref(database, `data/${userEmail}/${wordToDelete}`);
+
+  try {
+    await remove(userWordRef);
+
+    // Update state after successful deletion
+    setReviewWords((prevWords) =>
+      prevWords.filter((word) => word !== wordToDelete)
+    );
+  } catch (error) {
+    console.error("Error deleting word:", error);
+  }
+};
+
+
 
   return (
     <DndProvider backend={HTML5Backend}>

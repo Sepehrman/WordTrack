@@ -2,7 +2,6 @@
 .buttonContainer {
   display: flex;
   align-items: center;
-  justify-content: space-between; /* Adjust this property */
 }
 
   
@@ -12,7 +11,6 @@
     color: white; /* Text color for the button */
     border: none; /* Remove button border */
     cursor: pointer;
-    vertical-align: middle;
     display: flex; /* Use flex layout */
     align-items: center; /* Center vertically */
     justify-content: center; /* Center horizontally */
@@ -25,8 +23,5 @@
     color: red; /* Text color for the delete button */
     border: none; /* Remove button border */
     cursor: pointer;
-    vertical-align: middle;
-    width: fit-content;
-    height: auto;
   }
   
