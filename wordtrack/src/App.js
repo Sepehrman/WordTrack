@@ -2,16 +2,16 @@ import React, { useEffect, useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom"; // Import Routes from react-router-dom
 import logo from "./logo.svg";
 
-import Navbar from "./components/Navbar";
-import Profile from "./components/Profile";
-import Login from './components/Login';
-import SignUp from './components/SignUp';
-import PrivateRoute from "./components/PrivateRoute";
-import ForgotPass from "./components/ForgotPass";
-import ResetMessage from "./components/ResetMessage";
+import Navbar from "./common/Navbar";
+import Profile from "./profile/Profile";
+import Login from './auth/Login';
+import SignUp from './auth/SignUp';
+import PrivateRoute from "./auth/PrivateRoute";
+import ForgotPass from "./auth/ForgotPass";
+import ResetMessage from "./auth/ResetMessage";
 
 
-import Dashboard from './components/Dashboard';
+import Dashboard from './landing/Dashboard';
 
 function App() {
   const [userEmail, setUserEmail] = useState(

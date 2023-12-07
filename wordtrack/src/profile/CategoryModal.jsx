@@ -3,7 +3,7 @@ import WordButtonCategory from './WordButtonCategory';
 import { database } from '../firebase';
 import { ref, onValue, off, remove, child } from 'firebase/database';
 import './CategoryModal.css';
-import Definition from '../defpage/Definition';
+import Definition from '../dictionary/Definition';
 
 const CategoryModal = ({ category, onClose }) => {
   const [words, setWords] = useState([]);
@@ -67,6 +67,7 @@ const CategoryModal = ({ category, onClose }) => {
 
   return (
     <div className="category-modal">
+      <h2>{category}</h2>
       <div className="word-list">
         {words.map((word, index) => (
           <WordButtonCategory
@@ -76,27 +77,38 @@ const CategoryModal = ({ category, onClose }) => {
           />
         ))}
       </div>
+      <div className='button-set-category-dropdown'>
+        {words.length>0 &&(
+            <button className="cue-cards-button" onClick={toggleCueCards}>
+            Cue Cards
+          </button>
+        )}
       <button className="close-modal" onClick={onClose}>
         Close
       </button>
-      <button className="cue-cards-button" onClick={toggleCueCards}>
-        Cue Cards
-      </button>
+      </div>
+      <div className='cue-cards-div'>
       {showCueCards && (
         <div className="cue-cards">
+          <div className="cue-card-top-buttons">
           <button className="close-cue-cards" onClick={toggleCueCards}>
-            Close Cue Cards
+            Close 
           </button>
-          <button onClick={() => navigateCueCards(-1)}>Previous</button>
-          <button onClick={() => navigateCueCards(1)}>Next</button>
-
+          <button onClick={toggleCueCardBlur}>
+           Toggle Blur
+          </button>
+          </div>
           <h2> Word : {words[currentCueCardIndex]}</h2>
-
-          <div className={"cue-card " + (isCueCardBlurred ? "blur" : "")} onClick={toggleCueCardBlur}>
+          <div className={"cue-card " + (isCueCardBlurred ? "blur" : "")}>
           {definitionComponents[currentCueCardIndex]}
+        </div>
+        <div className="cue-card-buttons-footer">
+        <button onClick={() => navigateCueCards(-1)}>Previous</button>
+        <button onClick={() => navigateCueCards(1)}>Next</button>
         </div>
         </div>
       )}
+      </div>
     </div>
   );
 };

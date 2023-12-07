@@ -1,29 +1,26 @@
 /* WordDef.css */
 
 .scrollable-box {
-    max-height: 400px; /* Adjust the maximum height as needed */
+    max-height: 30vh; /* Adjust the maximum height as needed */
     overflow-y: auto;  /* Enable vertical scrolling */
     border-radius: 8px;
     margin-top: 10px;
+    padding: 5px;
   }
   
-  .container {
-    max-width: 800px;
+  .worddef-container {
+    max-width: 100vw;
     margin: 0;
     margin-bottom: 50px;
-    padding-left: 20px;
-    padding-right: 20px;
-    padding-top: 5px;
+    padding:20px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
     background-color: #ffffff;
     border-radius: 10px;
   }
 
-  .footer{
+  .worddef-footer{
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
   }
-
-  

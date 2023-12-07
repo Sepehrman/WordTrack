@@ -94,7 +94,7 @@ const SignUp = ({ validateInput, isValid, errMsg }) => {
         </button>
         <a href="/login" style={{ paddingLeft: "170px" }}>Have an Account?</a>
       </div>
-      {(errorMessage || errorMessage == "") && <p className="error-message">{errorMessage}</p>}
+      {(errorMessage || errorMessage == "") && <p className="error-message" data-cy="txt-signup-err">{errorMessage}</p>}
     </div>
   );
 };

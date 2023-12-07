@@ -1,5 +1,5 @@
 import React from "react";
-import FindDefinition from "../defpage/FindDefinition";
+import FindDefinition from "../dictionary/FindDefinition";
 import WordOfTheDay from "./WordOfTheDay";
 import "./Dashboard.css"; // Import the CSS file
 

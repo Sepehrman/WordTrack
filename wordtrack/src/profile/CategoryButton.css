@@ -7,8 +7,6 @@
     justify-content: center;
     align-items: center;
     margin: 10px;
-    border: 1px black solid;
-    border-radius: 5px;
     
   }
   
@@ -50,14 +48,18 @@
   
   /* Styles for the profileCategoryButton in view mode */
   .profileCategoryButton {
-    background-color: #3498db;
-    color: white;
-    border: none;
-    border-radius: 3px;
-    padding: 30px 30px;
+    color: #007BFF;
+    padding: 50px;
     cursor: pointer;
-    margin: 5px;
     width: 100%; 
+    background-color: rgba(20, 131, 131, 0);
+    border: 3px solid black;
+    border-radius: 10px;
+    font-size: 24px; /* Increase the font size */
+    text-transform: capitalize;
+    font-weight: bold;
+    box-sizing: border-box;
+    padding-right: 65px;
   }
   
   /* Styles for the Delete button */

@@ -2,11 +2,18 @@
  * Black Box Testing of Login Page
  *
  * Derived using Equivilence Partitioning
+ * 
+ * Inputs:
+ * Email
+ * Password
  */
 
-/** 
- * * Number of Characters
- */
+// *******************************************************************
+// *Email Input
+// *******************************************************************
+
+// * Number of Characters
+
 const validEmail = "nathan@mail.com";
 const validPassword = "hellothere"; // !Invalid password when signing up
 
@@ -14,7 +21,7 @@ const validEmailShort = "i@li.ca";
 const validPasswordShort = "Hellothere1";
 
 // 1
-describe("invalid login test: empty email", () => {
+describe("invalid email input login test: empty email", () => {
   it("should show error message and not redirect to home", () => {
     cy.visit("/login");
     cy.get('[data-cy="input-text-email"]').clear(); // Empty
@@ -31,7 +38,7 @@ describe("invalid login test: empty email", () => {
 });
 
 // 2
-describe("invalid login test: short email", () => {
+describe("invalid email input login test: short email", () => {
   it("should show error message and not redirect to home", () => {
     cy.visit("/login");
     cy.get('[data-cy="input-text-email"]').clear().type("a");
@@ -42,13 +49,13 @@ describe("invalid login test: short email", () => {
     // Error message shows up
     cy.get('[data-cy="txt-login-err"]').should("exist");
 
-    // Doesn't redirect
+    // shouldn't redirect
     cy.url().should("equal", `${Cypress.config("baseUrl")}/login`);
   });
 });
 
 // 3
-// describe('invalid login test: 5-short email', () => {
+// describe('invalid email input login test: 5-short email', () => {
 //   it('should redirect to home', () => {
 //     cy.visit('/login')
 //     cy.get('[data-cy="input-text-email"]').clear().type("“a@a.a")
@@ -65,7 +72,7 @@ describe("invalid login test: short email", () => {
 // })
 
 // 4
-describe("valid login test: short email", () => {
+describe("valid email input login test: short email", () => {
   it("should redirect to home", () => {
     cy.visit("/login");
     cy.get('[data-cy="input-text-email"]').clear().type("i@li.ca");
@@ -79,7 +86,7 @@ describe("valid login test: short email", () => {
 });
 
 // 5
-describe("valid login test: longer email", () => {
+describe("valid email input login test: longer email", () => {
   it("should redirect to home", () => {
     cy.visit("/login");
     cy.get('[data-cy="input-text-email"]').clear().type("nathan@mail.com");
@@ -93,7 +100,7 @@ describe("valid login test: longer email", () => {
 });
 
 // 6
-describe("valid login test: long email", () => {
+describe("valid email input login test: long email", () => {
   it("should redirect to home", () => {
     cy.visit("/login");
     cy.get('[data-cy="input-text-email"]')
@@ -111,7 +118,7 @@ describe("valid login test: long email", () => {
 });
 
 // 7
-describe("invalid login test: too long email", () => {
+describe("invalid email input login test: too long email", () => {
   it("should show error message and not redirect to home", () => {
     cy.visit("/login");
     cy.get('[data-cy="input-text-email"]')
@@ -126,7 +133,7 @@ describe("invalid login test: too long email", () => {
     // Error message shows up
     cy.get('[data-cy="txt-login-err"]').should("exist");
 
-    // redirect
+    // shouldn't redirect
     cy.url().should("equal", `${Cypress.config("baseUrl")}/login`);
   });
 });
@@ -136,7 +143,7 @@ describe("invalid login test: too long email", () => {
  */
 
 // 1
-describe("invalid login test: zero @ symbols", () => {
+describe("invalid email input login test: zero @ symbols", () => {
   it("should show error message and not redirect to home", () => {
     cy.visit("/login");
     cy.get('[data-cy="input-text-email"]')
@@ -151,13 +158,13 @@ describe("invalid login test: zero @ symbols", () => {
     // Error message shows up
     cy.get('[data-cy="txt-login-err"]').should("exist");
 
-    // redirect
+    // shouldn't redirect
     cy.url().should("equal", `${Cypress.config("baseUrl")}/login`);
   });
 });
 
 // 2
-describe("valid login test: 1 @ symbols", () => {
+describe("valid email input login test: 1 @ symbols", () => {
   it("should redirect to home", () => {
     cy.visit("/login");
     cy.get('[data-cy="input-text-email"]')
@@ -175,7 +182,7 @@ describe("valid login test: 1 @ symbols", () => {
 });
 
 // 3
-describe("invalid login test: 2 @ symbols", () => {
+describe("invalid email input login test: 2 @ symbols", () => {
   it("should show error message and not redirect to home", () => {
     cy.visit("/login");
     cy.get('[data-cy="input-text-email"]')
@@ -190,7 +197,7 @@ describe("invalid login test: 2 @ symbols", () => {
     // Error message shows up
     cy.get('[data-cy="txt-login-err"]').should("exist");
 
-    // redirect
+    // shouldn't redirect
     cy.url().should("equal", `${Cypress.config("baseUrl")}/login`);
   });
 });
@@ -200,7 +207,7 @@ describe("invalid login test: 2 @ symbols", () => {
  */
 
 // 1
-describe("invalid login test: zero . symbols", () => {
+describe("invalid email input login test: zero . symbols", () => {
   it("should show error message and not redirect to home", () => {
     cy.visit("/login");
     cy.get('[data-cy="input-text-email"]')
@@ -215,13 +222,13 @@ describe("invalid login test: zero . symbols", () => {
     // Error message shows up
     cy.get('[data-cy="txt-login-err"]').should("exist");
 
-    // redirect
+    // shouldn't redirect
     cy.url().should("equal", `${Cypress.config("baseUrl")}/login`);
   });
 });
 
 // 2
-describe("invalid login test: 1 . symbols", () => {
+describe("valid email input login test: 1 . symbols", () => {
   it("should redirect to home", () => {
     cy.visit("/login");
     cy.get('[data-cy="input-text-email"]')
@@ -239,7 +246,7 @@ describe("invalid login test: 1 . symbols", () => {
 });
 
 // 3
-describe("invalid login test: 2 . symbols", () => {
+describe("invalid email input login test: 2 . symbols", () => {
   it("should show error message and not redirect to home", () => {
     cy.visit("/login");
     cy.get('[data-cy="input-text-email"]')
@@ -251,7 +258,74 @@ describe("invalid login test: 2 . symbols", () => {
     cy.get('[data-cy="btn-login"]').click();
     cy.wait(500);
 
-    // redirect
+    // Error message shows up
+    cy.get('[data-cy="txt-login-err"]').should("exist");
+
+    // shouldn't redirect
+    cy.url().should("equal", `${Cypress.config("baseUrl")}/login`);
+  });
+});
+
+
+// *******************************************************************
+// * Password Input
+// *******************************************************************
+
+// * Number of Characters
+
+// 1
+describe("invalid password input login test: empty input", () => {
+  it("should show correct error message and not redirect to home", () => {
+    cy.visit("/login");
+    cy.get('[data-cy="input-text-email"]')
+      .clear()
+      .type(validEmail);
+    cy.get('[data-cy="input-text-password"]').clear();  // Empty
+    cy.get('[data-cy="btn-login"]').click();
+    cy.wait(500);
+    
+    // Correct Error message shows up
+    cy.get('[data-cy="txt-login-err"]').should("exist").contains(/Missing Credentials: Please enter your Password/g)
+
+    // shouldn't redirect
+    cy.url().should("equal", `${Cypress.config("baseUrl")}/login`);
+  });
+});
+
+// 2
+describe("invalid password input login test: 1 long input", () => {
+  it("should show correct error message and not redirect to home", () => {
+    cy.visit("/login");
+    cy.get('[data-cy="input-text-email"]')
+      .clear()
+      .type(validEmail);
+    cy.get('[data-cy="input-text-password"]').clear().type("a");  // Empty
+    cy.get('[data-cy="btn-login"]').click();
+    cy.wait(500);
+    
+    // Correct Error message shows up
+    cy.get('[data-cy="txt-login-err"]').should("exist").contains(/Invalid Login Credentials. please check your Email & Password/g)
+
+    // shouldn't redirect
+    cy.url().should("equal", `${Cypress.config("baseUrl")}/login`);
+  });
+});
+
+// 3
+describe("invalid password input login test: non-empty input", () => {
+  it("should show correct error message and not redirect to home", () => {
+    cy.visit("/login");
+    cy.get('[data-cy="input-text-email"]')
+      .clear()
+      .type(validEmail);
+    cy.get('[data-cy="input-text-password"]').clear().type("LongButIncorrectPassword");  // Empty
+    cy.get('[data-cy="btn-login"]').click();
+    cy.wait(500);
+    
+    // Correct Error message shows up
+    cy.get('[data-cy="txt-login-err"]').should("exist").contains(/Invalid Login Credentials. please check your Email & Password/g)
+
+    // shouldn't redirect
     cy.url().should("equal", `${Cypress.config("baseUrl")}/login`);
   });
 });

@@ -1,20 +1,23 @@
 /* Styles for the container */
 .buttonContainer {
-    display: flex; /* Use flex layout */
-    align-items: center; /* Center vertically */
+  display: flex;
+  align-items: center;
+}
 
-  }
   
   /* Styles for the review word button */
   .reviewWordButton {
-    padding: 20px 20px; /* Adjust the padding to your preference */
+    padding: 20px; /* Adjust the padding to your preference */
     color: white; /* Text color for the button */
     border: none; /* Remove button border */
     cursor: pointer;
-    vertical-align: middle;
     display: flex; /* Use flex layout */
     align-items: center; /* Center vertically */
     justify-content: center; /* Center horizontally */
+    margin-top: 10px;
+    margin-bottom: 10px;
+    text-transform: capitalize;
+    min-width: 6vw;
   }
   
   /* Styles for the delete button */
@@ -22,9 +25,7 @@
     background-color: transparent;
     /* Adjust the padding to your preference */
     color: red; /* Text color for the delete button */
-    border: none; /* Remove button border */
     cursor: pointer;
-    vertical-align: middle;
-    margin-right:45%;
+    margin-left: 0;
   }
   
