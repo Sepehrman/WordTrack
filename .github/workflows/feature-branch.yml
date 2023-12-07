@@ -21,22 +21,14 @@ jobs:
       - name: Deploy Project Artifacts to Vercel
         run: vercel deploy --prebuilt --token=${{ secrets.VERCEL_TOKEN }}
   cypress-run:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-        # Install NPM dependencies, cache them correctly
-        # and run all Cypress tests
-      - name: Build npm
-        uses: actions/checkout@v4
-        with:
-          working-directory: wordtrack
-          build: npm run build
-          start: npm start
-          wait-on: 'http://localhost:3000'
+      # Install NPM dependencies, cache them correctly
+      # and run all Cypress tests
       - name: Cypress run
         uses: cypress-io/github-action@v6
         with:
-            working-directory: wordtrack
-            command: npx cypress run 
-            browser: chrome       
+          build: npm run build
+          start: npm start  
