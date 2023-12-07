@@ -22,13 +22,17 @@
     "react-scripts": "5.0.1",
     "seedrandom": "^3.0.5",
     "vercel": "^32.6.1",
+    "wait-on": "^7.2.0",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start_old": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts -r @cypress/instrument-cra start",
-    "eject": "react-scripts eject"
+    "test_old": "react-scripts -r @cypress/instrument-cra start",
+    "eject": "react-scripts eject",
+    "start": "react-scripts -r @cypress/instrument-cra start",
+    "cy:run": "npx cypress run",
+    "test": "start-server-and-test start http://localhost:3000 cy:run"
   },
   "eslintConfig": {
     "extends": [
@@ -52,6 +56,7 @@
     "@4tw/cypress-drag-drop": "^2.2.5",
     "cypress": "^13.6.1",
     "eslint": "^8.55.0",
-    "eslint-plugin-react": "^7.33.2"
+    "eslint-plugin-react": "^7.33.2",
+    "start-server-and-test": "^2.0.3"
   }
 }
