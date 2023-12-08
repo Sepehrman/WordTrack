@@ -21,7 +21,7 @@ const CategoryButton = ({ category, onDelete }) => {
       const userCategoryRef = ref(database, `data/${userEmail.replace('.', '_')}/categories/${category}/`);
 
       try {
-        // Fetch the existing words in the category
+        // Fetch the existing words in the category.
         const categorySnapshot = await get(userCategoryRef);
         if (categorySnapshot.exists()) {
           const existingWords = categorySnapshot.val();
